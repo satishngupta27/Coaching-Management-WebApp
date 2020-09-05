@@ -1,10 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Academics from './pages/coaching_portal_pages/Academics';
+import Dashboard from './pages/coaching_portal_pages/Dashboard';
+import Student_Info from './pages/coaching_portal_pages/Student_Info';
+
+
 
 function App() {
   return (
-    <div><h1>This is our mini project <br/> Coaching Management Web App btech cse satish gupta</h1></div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path='/' exact component={Dashboard} />
+          <Route path='/academics' component={Academics} />
+          <Route path='/student_Info' component={Student_Info} />
+        </Switch>
+      </Router>
   );
 }
 
