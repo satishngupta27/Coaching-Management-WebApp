@@ -11,7 +11,6 @@ import Student_Info from './pages/coaching_portal_pages/Student_Info';
 
 function App() {
   return (
-    <>
       <Router>
         <Navbar />
         <Switch>
@@ -20,7 +19,6 @@ function App() {
           <Route path='/student_Info' component={Student_Info} />
         </Switch>
       </Router>
-    </>
   );
 }
 
