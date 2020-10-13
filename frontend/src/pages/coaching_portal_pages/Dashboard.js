@@ -13,12 +13,13 @@ function Dashboard() {
         <GreetingUser/>
         <DateAndTime/>
       </Row>
-      <Row style={{margin:'auto' , justifyContent:'center'}}>
+      <Row style={{margin:'auto'}}>
         <Overview_Card title={'Total Student'} value={'560'}/>
         <Overview_Card title={'Braches'} value={'2'}/>
         <Overview_Card title={'Batches'} value={'6'}/>
         <Overview_Card title={'Teachers'} value={'10'}/>
         <Overview_Card title={'Subjects'} value={'5'}/>
+        
       </Row>
     </Container>
     </>
