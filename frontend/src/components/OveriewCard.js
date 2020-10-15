@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 
 
 
-function Overview_Card(props) {
+function OverviewCard(props) {
   return (
       <>
     <Card style={{ width: '10rem',height:'10rem' ,margin: '15px'}}>
@@ -20,4 +20,4 @@ function Overview_Card(props) {
   );
 }
 
-export default Overview_Card;
+export default OverviewCard;
