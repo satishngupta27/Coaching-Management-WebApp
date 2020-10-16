@@ -22,7 +22,7 @@ function Notes() {
             marginBottom: "20px",
           }}
         >
-          <Link to="./createNewSubjectForm">
+          <Link to="./uploadNotesForm">
             {/* {item.icon} */}
             <span>
               <MenuButton title={"Upload Notes "} />
