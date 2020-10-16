@@ -36,14 +36,8 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Accounting',
-    path: '/accounting',
-    icon: <IoIcons.IoMdCalculator />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Batches-Branches',
-    path: '/batches_braches',
+    title: 'Batches',
+    path: '/batches',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
   },
