@@ -16,7 +16,7 @@ function Academics() {
       </h1>
       <Container>
         <Row>
-          <Link to="./uploadNotesForm">
+          <Link to="./Notes">
             <StudyMaterialMenuCard
               title="Notes"
               subtitle="notes according to syllabus"
