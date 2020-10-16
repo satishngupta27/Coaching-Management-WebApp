@@ -9,10 +9,12 @@ function CreateNewSubjectForm() {
   const initialValues = {
     title: "",
     subtitle: "",
+    imgUrl:""
   };
   const validationSchema = Yup.object({
     title: Yup.string().required("Required"),
     subtitle: Yup.string().required("Required"),
+    imgUrl:Yup.string().required("Required"),
   });
   const onSubmit = (values) => {
     console.log("Form data", values);
@@ -22,7 +24,7 @@ function CreateNewSubjectForm() {
   return (
     <div className="AddStudent">
       <h1 style={{ textAlign: "center" }}>Create New Subject</h1>
-      <Container>
+      <Container className='justify-content-md-end' >
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -42,12 +44,18 @@ function CreateNewSubjectForm() {
                 label="subtitle"
                 name="subtitle"
               />
+              <FormikControl
+                control="input"
+                type="text"
+                label="imgUrl"
+                name="imgUrl"
+              />
 
-              <Row style={{ justifyContent: "right" }}>
+             
                 <button type="submit" className="btn btn-primary">
                   Create Subject
                 </button>
-              </Row>
+              
             </Form>
           )}
         </Formik>
