@@ -1,11 +1,13 @@
 import React from "react";
 import { Container, Row, Col,Card,ListGroup,ListGroupItem } from "react-bootstrap";
-
+import { StudentlistDataDemo } from "./Studentlistdatademo";
 function StudentProfile(props) {
+  const rollno= props.match.params.id;
+  let obj = StudentlistDataDemo.find(obj => obj.rollno == 1);
+  console.log(obj)
  
   return (
-    <Container>
-      <h1>{props.match.params.id}</h1>
+    <Container >
       <Row>
         <Col>
           <Card style={{ width: "18rem" }}>
@@ -26,16 +28,16 @@ function StudentProfile(props) {
           </Card>
         </Col>
         <Col >
-        <Card>
-        <h3>personal details</h3>
-        <h6>Name: Harry potter</h6>
-        <h6>mobile no: Harry potter</h6>
+        <Card style={{padding:'30px' , margin:'20px'}}>
+        <h3>Personal details</h3>
+  <h6>Name: {obj.firstName}</h6>
+  <h6>mobile no: {obj.mobileNumber}</h6>
         <h6>email: Harry potter</h6>
         <h6>dob: Harry potter</h6>
         <h6>gender: Harry potter</h6>
         <h6>Roll no: Harry potter</h6>
         </Card>
-        <Card>
+        <Card style={{padding:'30px',margin:"20px"}}>
         <h3>Parent details</h3>
         <h6>Name: Harry potter</h6>
         <h6>mobile no: Harry potter</h6>
