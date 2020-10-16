@@ -27,7 +27,7 @@ function AddStudent() {
     lastName: "",
     email: "",
     mobileNumber: "",
-    selectBrachOption: "",
+    
     selectBatchOption: "",
     GenderRadioOption: "",
     guardianName: "",
@@ -44,7 +44,7 @@ function AddStudent() {
     email: Yup.string().email("Invalid Email Format").required("Required"),
     mobileNumber: Yup.string().required("Required"),
     selectBatchOption: Yup.string().required("Required"),
-    selectBranchOption: Yup.string().required("Required"),
+    
     GenderRadioOption: Yup.string().required("Required"),
     guardianName: Yup.string().required("Required"),
     guardianMobileNumber: Yup.string().required("Required"),
@@ -96,12 +96,7 @@ function AddStudent() {
                     label="Mobile Number"
                     name="mobileNumber"
                   />
-                  <FormikControl
-                    control="select"
-                    label="Select a Branch"
-                    name="selectBranchOption"
-                    options={branchDropDownOptions}
-                  />
+                  
                   <FormikControl
                     control="select"
                     label="Select a Batch"

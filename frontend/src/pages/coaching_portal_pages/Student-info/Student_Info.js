@@ -1,6 +1,12 @@
 import React from "react";
 import MenuButton from "../../../components/MenuButton";
-import { Container, Row, Table } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Table,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MdDelete, MdCreate, MdPerson } from "react-icons/md";
 import { StudentlistDataDemo } from "./Studentlistdatademo";
@@ -42,7 +48,7 @@ function Student_Info() {
             {StudentlistDataDemo.map((item, index) => {
               return (
                 <tr>
-                  <td>{item.rollno}</td> 
+                  <td>{item.rollno}</td>
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
                   <td>{item.email}</td>
@@ -51,11 +57,17 @@ function Student_Info() {
                   <td style={{ textAlign: "center" }}>
                     <MdDelete />
                     <MdCreate />
-                    <Link to={`./Student_Info/studentprofile/${item.firstName}`} >
-                      <span>
-                        <MdPerson />
-                      </span>
-                    </Link>
+                    <OverlayTrigger
+                      overlay={<Tooltip>Click to view Profile</Tooltip>}
+                    >
+                      <Link
+                        to={`./Student_Info/studentprofile/${item.firstName}`}
+                      >
+                        <span>
+                          <MdPerson />
+                        </span>
+                      </Link>
+                    </OverlayTrigger>
                     {/* <Link to={`/student_Info/studentprofile/+this.props.rollno}`}>More info</Link> */}
                   </td>
                 </tr>
