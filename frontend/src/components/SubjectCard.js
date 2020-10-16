@@ -6,7 +6,7 @@ function SubjectCard(props) {
   return (
     <>
       <Card style={{ width: "20rem", margin:'20px'}}>
-        <Card.Img variant="top" src={logo} height={150} />
+        <Card.Img variant="top" src={props.imgUrl} height={150} />
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
           <Card.Text>
