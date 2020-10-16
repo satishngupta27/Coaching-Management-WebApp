@@ -33,7 +33,7 @@ function SubjectWise() {
               <Link to={item.path}>
                 <SubjectCard
                   title={item.title}
-                  imgUrl={logo}
+                  imgUrl={item.imgUrl}
                   subtitle={item.subtitle}
                 />
               </Link>
