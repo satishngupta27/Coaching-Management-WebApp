@@ -12,23 +12,10 @@ function Notes() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>
-        Upload notes
+        All notes
       </h1>
       <Container>
-      <Row
-          style={{
-            justifyContent: "flex-end",
-            textAlign: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <Link to="./uploadNotesForm">
-            {/* {item.icon} */}
-            <span>
-              <MenuButton title={"Upload Notes "} />
-            </span>
-          </Link>
-        </Row>
+      
         <Row>
           {NotesDemoData.map((item, index) => {
             return (

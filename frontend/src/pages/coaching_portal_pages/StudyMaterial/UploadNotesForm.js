@@ -6,15 +6,25 @@ import FormikControl from "../../../components/FormComponents/FormikControl";
 import "../Student-info/AddStudent.css";
 
 function UploadNotesForm() {
+  const notesTypedropdownOptions = [
+    { key: 'Select an option', value: '' },
+    { key: 'Option 1', value: 'option1' },
+    { key: 'Option 2', value: 'option2' },
+    { key: 'Option 3', value: 'option3' }
+  ]
   const initialValues = {
     ChapterName: "",
     TopicName: "",
-    WrittenBy:""
+    WrittenBy:"",
+    notesTypedropdownOptions:"",
+    videoLink:""
   };
   const validationSchema = Yup.object({
     ChapterName: Yup.string().required("Required"),
     TopicName: Yup.string().required("Required"),
     WrittenBy:Yup.string().required("Required"),
+    notesTypedropdownOptions:Yup.string().required("Required"),
+    videoLink:Yup.string()
   });
   const onSubmit = (values) => {
     console.log("Form data", values);
@@ -49,6 +59,18 @@ function UploadNotesForm() {
                 type="text"
                 label="Written by"
                 name="WrittenBy"
+              />
+              <FormikControl
+            control='select'
+            label='Select contentType'
+            name='notesTypedropdownOptions'
+            options={notesTypedropdownOptions}
+          />
+          <FormikControl
+                control="input"
+                type="text"
+                label="Link of content"
+                name="videoLink"
               />
 
               <Row style={{ justifyContent: "right" }}>

@@ -4,7 +4,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 
-export const SidebarData = [
+export const StudentSidebarData = [
   {
     title: 'Dashboard',
     path: '/',
@@ -12,14 +12,14 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Study Material',
-    path: '/subjectwise',
+    title: 'My Study Material',
+    path: '/myStudyMaterial',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
   {
-    title: 'Assignment',
-    path: '/assignment',
+    title: 'My Assignment',
+    path: '/myAssignment',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
@@ -30,20 +30,15 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Student Info',
-    path: '/student_info',
+    title: 'My Profile',
+    path: '/myProfile',
     icon: <FaIcons.FaPersonBooth />,
     cName: 'nav-text'
   },
+  
   {
-    title: 'Batches',
-    path: '/batches',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Student-Doubt',
-    path: '/student_doubt',
+    title: 'My Doubt',
+    path: '/myDoubt',
     icon: <IoIcons.IoMdHelpCircle />,
     cName: 'nav-text'
   }
