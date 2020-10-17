@@ -51,12 +51,7 @@ function CreateNewBatchForm() {
                 label="Batch Name"
                 name="batchName"
               />
-              <FormikControl
-                control="input"
-                type="text"
-                label="subject"
-                name="subject"
-              />
+            
               <FormikControl
                     control="select"
                     label="Select a Subject"

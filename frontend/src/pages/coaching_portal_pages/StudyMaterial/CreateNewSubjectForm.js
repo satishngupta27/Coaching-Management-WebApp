@@ -19,12 +19,13 @@ function CreateNewSubjectForm() {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    this.props.history.push('./subjectwise');
   };
 
   return (
     <div className="AddStudent">
       <h1 style={{ textAlign: "center" }}>Create New Subject</h1>
-      <Container className='justify-content-md-end' >
+      <Container >
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -47,6 +48,12 @@ function CreateNewSubjectForm() {
               <FormikControl
                 control="input"
                 type="text"
+                label="imgUrl"
+                name="imgUrl"
+              />
+              <FormikControl
+                control="input"
+                type="file"
                 label="imgUrl"
                 name="imgUrl"
               />

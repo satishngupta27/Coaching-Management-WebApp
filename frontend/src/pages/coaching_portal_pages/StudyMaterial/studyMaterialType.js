@@ -15,6 +15,20 @@ function Academics() {
         Study material : Create or post for students
       </h1>
       <Container>
+      <Row
+          style={{
+            justifyContent: "flex-end",
+            textAlign: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <Link to="./uploadNotesForm">
+            {/* {item.icon} */}
+            <span>
+              <MenuButton title={"Upload Content "} />
+            </span>
+          </Link>
+        </Row>
         <Row>
           <Link to="./Notes">
             <StudyMaterialMenuCard
