@@ -55,6 +55,7 @@ function App() {
         <Route path="/assignment" component={Assignment} />
         <Route path="/student_Info" exact component={Student_Info} />
         <Route path="/student_Info/addStudent" exact component={AddStudent} />
+        <Route path="/StudentDoubt/addAnswers" exact component ={ addAnswers } />
         <Route
           path="/student_Info/viewAllStudent"
           exact
