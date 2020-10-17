@@ -23,6 +23,10 @@ import ViewAllStudent from "./pages/coaching_portal_pages/Student-info/ViewAllSt
 import UpdateStudent from "./pages/coaching_portal_pages/Student-info/UpdateStudent";
 import StudentProfile from "./pages/coaching_portal_pages/Student-info/StudentProfile";
 import Notes from "./pages/coaching_portal_pages/StudyMaterial/Notes";
+import AddAnswers from "./pages/coaching_portal_pages/StudentDoubt/addAnswers";
+import StudentDoubt from "./pages/coaching_portal_pages/StudentDoubt/Student_Doubt";
+
+
 
 
 //imports pages for students
@@ -55,7 +59,8 @@ function App() {
         <Route path="/assignment" component={Assignment} />
         <Route path="/student_Info" exact component={Student_Info} />
         <Route path="/student_Info/addStudent" exact component={AddStudent} />
-        <Route path="/StudentDoubt/addAnswers" exact component ={ addAnswers } />
+        <Route path="/studentDoubt/addAnswers" exact component ={ AddAnswers } />
+        <Route path="/studentDoubt" exact component ={ StudentDoubt } />
         <Route
           path="/student_Info/viewAllStudent"
           exact

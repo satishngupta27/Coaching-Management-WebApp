@@ -25,7 +25,7 @@ return(
               return ( 
                 <div className="container">
               <DoubtCard names = {item.names} question = {item.question} /> 
-              <Link to="./pages/coaching_portal_pages/StudentDoubt/addAnswers">
+              <Link to="/studentDoubt/addAnswers">
               <div style={{marginLeft: "1021px"}}><MenuButton title={"Answer"} /></div>
                 </Link> 
               </div>

@@ -43,7 +43,7 @@ export const TeacherSidebarData = [
   },
   {
     title: 'Student-Doubt',
-    path: '/student_doubt',
+    path: '/studentDoubt',
     icon: <IoIcons.IoMdHelpCircle />,
     cName: 'nav-text'
   }
