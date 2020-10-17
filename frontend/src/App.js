@@ -27,6 +27,9 @@ import ViewAllStudent from "./pages/coaching_portal_pages/Student-info/ViewAllSt
 import UpdateStudent from "./pages/coaching_portal_pages/Student-info/UpdateStudent";
 import StudentProfile from "./pages/coaching_portal_pages/Student-info/StudentProfile";
 import Notes from "./pages/coaching_portal_pages/StudyMaterial/Notes";
+import addAnswers from "./pages/coaching_portal_pages/StudentDoubt/addAnswers";
+
+import Student_Doubt from "./pages/coaching_portal_pages/StudentDoubt/Student_Doubt"
 Router.onRouteChangeStart = (url) => NProgress.start();
 Router.onRouteChangeComplete = (url) => NProgress.done();
 Router.onRouteChangeError = (url) => NProgress.done();
@@ -49,6 +52,7 @@ function App() {
         <Route path="/assignment" component={Assignment} />
         <Route path="/student_Info" exact component={Student_Info} />
         <Route path="/student_Info/addStudent" exact component={AddStudent} />
+        <Route path="/StudentDoubt/addAnswers" exact component ={ addAnswers } />
         <Route
           path="/student_Info/viewAllStudent"
           exact
@@ -64,6 +68,7 @@ function App() {
           exact
           component={StudentProfile}
         />
+        <Route path="/Student_Doubt" exact component={Student_Doubt} />
       </Switch>
     </Router>
   );
