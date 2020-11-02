@@ -23,12 +23,12 @@ export const StudentSidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
-  {
-    title: 'Attendence',
-    path: '/Attendence',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
-  },
+  // {
+  //   title: 'Attendence',
+  //   path: '/Attendence',
+  //   icon: <IoIcons.IoIosPaper />,
+  //   cName: 'nav-text'
+  // },
   {
     title: 'My Profile',
     path: '/myProfile',

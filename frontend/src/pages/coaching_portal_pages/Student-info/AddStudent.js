@@ -1,11 +1,13 @@
 import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import "./AddStudent.css";
 
 function AddStudent() {
+  const history = useHistory();
   const branchDropDownOptions = [
     { key: "Select a branch", value: "" },
     { key: "Option 1", value: "option1" },
@@ -57,6 +59,9 @@ function AddStudent() {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    
+    history.push("/student_Info")
+
   };
 
   return (

@@ -16,6 +16,9 @@ function DoubtCard(props) {
           <Card.Text>
             <h4><strong>{props.question}</strong></h4>
           </Card.Text>
+          <Card.Text>
+            <h4><strong>{props.answer}</strong></h4>
+          </Card.Text>
         </Card.Body>
       </Card>
     </>

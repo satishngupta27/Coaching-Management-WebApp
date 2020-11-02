@@ -63,7 +63,9 @@
   }
   
   .nav-text a:hover {
-    background-color: #1a83ff;
+    background-color: #FD5750;
+    /* background-color: #1a83ff; */
+    color:white;
     text-decoration: none;
   }
   

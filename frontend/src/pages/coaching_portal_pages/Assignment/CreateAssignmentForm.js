@@ -2,10 +2,14 @@ import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import "../Student-info/AddStudent.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; 
 
 function CreateAssignmentForm() {
+  const history = useHistory();
   const branchDropDownOptions = [
     { key: "Select a branch", value: "" },
     { key: "Option 1", value: "option1" },
@@ -53,6 +57,7 @@ function CreateAssignmentForm() {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    history.push("/assignment");
   };
 
   return (
@@ -66,8 +71,8 @@ function CreateAssignmentForm() {
         >
           {(formik) => (
             <Form>
-              <Row>
-                <Col>
+              {/* <Row>
+                <Col> */}
                   <FormikControl
                     control="input"
                     type="text"
@@ -79,6 +84,15 @@ function CreateAssignmentForm() {
                     label="Instruction"
                     name="instruction"
                   />
+                  {/* <FormikControl
+                  control='reactquill'
+                  label="Instruction"
+                  name="Instruction"
+                  
+                  /> */}
+                  {/* <ReactQuill
+
+                  /> */}
 
                   
                   <FormikControl
@@ -98,17 +112,18 @@ function CreateAssignmentForm() {
                     label="Pick a due date"
                     name="dueDate"
                   />
-                </Col>
+                {/* </Col>
 
-                <Col>
+                <Col> */}
                   <FormikControl
                     control="input"
                     type="text"
                     label="Point"
                     name="point"
                   />
-                </Col>
-              </Row>
+                  <input type="file"/>
+                {/* </Col>
+              </Row> */}
               <Row style={{ justifyContent: "right" }}>
                 <button type="submit" className="btn btn-primary">
                   Create

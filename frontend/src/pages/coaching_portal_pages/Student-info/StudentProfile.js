@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col,Card,ListGroup,ListGroupItem } from "react-bootstrap";
 import { StudentlistDataDemo } from "./Studentlistdatademo";
+
 function StudentProfile(props) {
   const rollno= props.match.params.id;
   let obj = StudentlistDataDemo.find(obj => obj.rollno == 1);
