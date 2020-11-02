@@ -12,6 +12,8 @@ import * as IoIcons from "react-icons/io";
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const [studentSidebar, setstudentSidebar] = useState(false);
+  const title=document.getElementById('title')
+  {studentSidebar?title.innerHTML='Student Portal':title.innerHTML='Teacher portal'}
 
   const showSidebar = () => setSidebar(!sidebar);
 

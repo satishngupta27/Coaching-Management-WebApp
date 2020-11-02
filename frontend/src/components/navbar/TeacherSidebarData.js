@@ -23,12 +23,12 @@ export const TeacherSidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
-  {
-    title: 'Attendence',
-    path: '/Attendence',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
-  },
+  // {
+  //   title: 'Attendence',
+  //   path: '/Attendence',
+  //   icon: <IoIcons.IoIosPaper />,
+  //   cName: 'nav-text'
+  // },
   {
     title: 'Student Info',
     path: '/student_info',

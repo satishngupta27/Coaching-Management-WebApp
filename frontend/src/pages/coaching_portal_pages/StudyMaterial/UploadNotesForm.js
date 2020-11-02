@@ -72,6 +72,7 @@ function UploadNotesForm() {
                 label="Link of content"
                 name="videoLink"
               />
+              <input type='file'/>
 
               <Row style={{ justifyContent: "right" }}>
                 <button type="submit" className="btn btn-primary">

@@ -12,20 +12,17 @@ function Student_Doubt() {
 
 return(
     <>
-    <Container >
-      <Row style={{justifyContent:'Space-between',textAlign:'right'}}>
-      <h1>Student Doubts</h1>
-        <DateAndTime/>
-      </Row>
-      </Container>
+    
+      
+      
 
         <h1 style ={{color:"red",textAlign:"center"}}> Questions</h1>
         {studentDoubtDemoData.map((item, index) => {
 
               return ( 
                 <div className="container">
-              <DoubtCard names = {item.names} question = {item.question} /> 
-              <Link to="/studentDoubt/addAnswers">
+              <DoubtCard names = {item.names} question = {item.question} answer={item.answer} /> 
+              <Link to={`./studentDoubt/${item.id}`}>
               <div style={{marginLeft: "1021px"}}><MenuButton title={"Answer"} /></div>
                 </Link> 
               </div>
