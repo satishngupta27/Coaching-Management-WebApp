@@ -2,9 +2,9 @@ import React,{useState} from "react";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NProgress from "nprogress";
+
 import "nprogress/nprogress.css";
-import Auth from './login'
+
 
 //imports pages for teacher
 import StudyMaterialType from "./pages/coaching_portal_pages/StudyMaterial/studyMaterialType";
@@ -39,10 +39,10 @@ import MyStudyMaterial from "./pages/Student_portal_pages/MyStudyMaterial/MyStud
 import SubmitAssignment from './pages/Student_portal_pages/MyAssignment/SubmitAssignment';
 
 
-function PageRoutes() {
+function PageRoutes(props) {
     return (
         <Router>
-  <Navbar />
+  <Navbar isStudent={props.isStudent}/>
   <Switch>
     {/* routes for teachers */}
     <Route path="/" exact component={Dashboard} />
