@@ -9,9 +9,9 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import * as IoIcons from "react-icons/io";
 
-function Navbar() {
+function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
-  const [studentSidebar, setstudentSidebar] = useState(false);
+  const [studentSidebar, setstudentSidebar] = useState(props.isStudent);
   const title=document.getElementById('title')
   {studentSidebar?title.innerHTML='Student Portal':title.innerHTML='Teacher portal'}
 
