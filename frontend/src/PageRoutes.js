@@ -2,14 +2,13 @@ import React,{useState} from "react";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NProgress from "nprogress";
+
 import "nprogress/nprogress.css";
-import Auth from './login'
+
 
 //imports pages for teacher
 import StudyMaterialType from "./pages/coaching_portal_pages/StudyMaterial/studyMaterialType";
 import MyStudyMaterialType from "./pages/Student_portal_pages/MyStudyMaterial/MystudyMaterialType";
-
 import SubjectWise from "./pages/coaching_portal_pages/StudyMaterial/SubjectWise";
 import Assignment from "./pages/coaching_portal_pages/Assignment/Assignment";
 import Attendence from "./pages/coaching_portal_pages/Attendence/Attendence";
@@ -37,12 +36,13 @@ import MyProfile from "./pages/Student_portal_pages/MyProfile/MyProfile";
 import MyAssignment from "./pages/Student_portal_pages/MyAssignment/MyAssignment";
 import MyStudyMaterial from "./pages/Student_portal_pages/MyStudyMaterial/MyStudyMaterial";
 import SubmitAssignment from './pages/Student_portal_pages/MyAssignment/SubmitAssignment';
+import MyDashboard from './pages/Student_portal_pages/MyDashboard/MyDashboard'
 
 
-function PageRoutes() {
+function PageRoutes(props) {
     return (
         <Router>
-  <Navbar />
+  <Navbar isStudent={props.isStudent}/>
   <Switch>
     {/* routes for teachers */}
     <Route path="/" exact component={Dashboard} />
@@ -78,6 +78,7 @@ function PageRoutes() {
 
 
     {/* routes for student */}
+    <Route path="/myDashboard" exact component={MyDashboard} />
     <Route path="/myStudyMaterial" exact component={MyStudyMaterial} />
     <Route path="/myStudyMaterialType" exact component={MyStudyMaterialType} />
     <Route path="/myAssignment" exact component={MyAssignment} />

@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import poster from "./components/img/poster.png";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./components/FormComponents/FormikControl";
 
-function Auth() {
+
+function Login(props) {
+  const [isStudent, setIsStudent] = useState(props.isStudent);
+
   const initialValues = {
-    username: "",
+    email: "",
     password: "",
   };
   const validationSchema = Yup.object({
-    username: Yup.string().required("Required"),
+    email: Yup.string().email().required("Required"),
     password: Yup.string().required("Required"),
   });
 
@@ -40,10 +43,11 @@ function Auth() {
           <h1 style={{ color: "white", marginLeft: "100px" }}>Application</h1>
         </Col>
         <Col sm={4} style={{ height: "100vh" }}>
-        <h1 style={{marginTop:'20px',marginLeft:'20px'}}>Login</h1>
-        <h4 style={{marginLeft:'20px'}}>For Students and Teacher</h4>
-          <Container style={{marginTop:'15vh'}}>
-              
+          <h1 style={{ marginTop: "20px", marginLeft: "20px" }}>Login</h1>
+          <h4 style={{ marginLeft: "20px" }}>
+            For {isStudent ? "Student" : "Teacher"}
+          </h4>
+          <Container style={{ marginTop: "15vh" }}>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -55,7 +59,7 @@ function Auth() {
                     control="input"
                     type="text"
                     label="Username"
-                    name="username"
+                    name="email"
                   />
                   <FormikControl
                     control="input"
@@ -64,13 +68,15 @@ function Auth() {
                     name="password"
                   />
 
-                 <Row >
-                    <button type="submit" className="btn btn-primary" >
+                  <Row>
+                    <button type="submit" className="btn btn-primary">
                       Login
                     </button>
-                    <h6>click here to register as teacher</h6>
-                    </Row>
-                 
+
+                    <h4 onClick={() => setIsStudent(!isStudent)} style={{cursor:'pointer'}}>
+                      click here to login as {isStudent ? "Student" : "Teacher"}
+                    </h4>
+                  </Row>
                 </Form>
               )}
             </Formik>
@@ -81,4 +87,4 @@ function Auth() {
   );
 }
 
-export default Auth;
+export default Login;
