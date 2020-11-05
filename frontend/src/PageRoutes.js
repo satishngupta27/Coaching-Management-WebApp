@@ -9,7 +9,6 @@ import "nprogress/nprogress.css";
 //imports pages for teacher
 import StudyMaterialType from "./pages/coaching_portal_pages/StudyMaterial/studyMaterialType";
 import MyStudyMaterialType from "./pages/Student_portal_pages/MyStudyMaterial/MystudyMaterialType";
-
 import SubjectWise from "./pages/coaching_portal_pages/StudyMaterial/SubjectWise";
 import Assignment from "./pages/coaching_portal_pages/Assignment/Assignment";
 import Attendence from "./pages/coaching_portal_pages/Attendence/Attendence";
@@ -37,6 +36,7 @@ import MyProfile from "./pages/Student_portal_pages/MyProfile/MyProfile";
 import MyAssignment from "./pages/Student_portal_pages/MyAssignment/MyAssignment";
 import MyStudyMaterial from "./pages/Student_portal_pages/MyStudyMaterial/MyStudyMaterial";
 import SubmitAssignment from './pages/Student_portal_pages/MyAssignment/SubmitAssignment';
+import MyDashboard from './pages/Student_portal_pages/MyDashboard/MyDashboard'
 
 
 function PageRoutes(props) {
@@ -78,6 +78,7 @@ function PageRoutes(props) {
 
 
     {/* routes for student */}
+    <Route path="/myDashboard" exact component={MyDashboard} />
     <Route path="/myStudyMaterial" exact component={MyStudyMaterial} />
     <Route path="/myStudyMaterialType" exact component={MyStudyMaterialType} />
     <Route path="/myAssignment" exact component={MyAssignment} />
