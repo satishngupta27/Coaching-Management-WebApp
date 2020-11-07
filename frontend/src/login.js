@@ -7,7 +7,12 @@ import FormikControl from "./components/FormComponents/FormikControl";
 
 
 function Login(props) {
+  
   const [isStudent, setIsStudent] = useState(props.isStudent);
+  const handleLoginState=()=>{
+    setIsStudent(!isStudent);
+    props.handleIsStudent()
+  }
 
   const initialValues = {
     email: "",
@@ -21,6 +26,8 @@ function Login(props) {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    if(values.email==='satish@gmail.com' && values.password==='12345678'){props.handleIsLogin()}
+    
   };
 
   return (
@@ -73,8 +80,8 @@ function Login(props) {
                       Login
                     </button>
 
-                    <h4 onClick={() => setIsStudent(!isStudent)} style={{cursor:'pointer'}}>
-                      click here to login as {isStudent ? "Student" : "Teacher"}
+                    <h4 onClick={handleLoginState} style={{cursor:'pointer'}}>
+                      click here to login as {isStudent ?  "Teacher":"Student"}
                     </h4>
                   </Row>
                 </Form>
