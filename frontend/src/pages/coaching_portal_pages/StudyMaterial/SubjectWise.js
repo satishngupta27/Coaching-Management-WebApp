@@ -1,12 +1,26 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { Container, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SubjectCard from "../../../components/SubjectCard";
-import logo from "../../../logo.svg";
-import { Subjectwisecontentdemodata } from "./subjectwisecontentdemodata";
 import MenuButton from "../../../components/MenuButton";
 
+
 function SubjectWise() {
+  const [subjects,setSubjects]=useState([{
+    title:'',
+    subtitle:'',
+    imgUrl:''
+  }])
+
+  useEffect(()=>{
+     fetch("/subjects").then(res=>{
+      if(res.ok){
+        return res.json()
+      }
+    }).then(jsonRes=>setSubjects(jsonRes));
+  },[])
+
+
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>
@@ -28,9 +42,9 @@ function SubjectWise() {
           </Link>
         </Row>
         <Row>
-          {Subjectwisecontentdemodata.map((item, index) => {
+          {subjects?subjects.map((item, index) => {
             return (
-              <Link to={item.path}>
+              <Link to= "./studyMaterialType">
                 <SubjectCard
                   title={item.title}
                   imgUrl={item.imgUrl}
@@ -38,7 +52,7 @@ function SubjectWise() {
                 />
               </Link>
             );
-          })}
+          }):<h3>loading</h3>}
           <Link to="./Notes"></Link>
         </Row>
       </Container>
