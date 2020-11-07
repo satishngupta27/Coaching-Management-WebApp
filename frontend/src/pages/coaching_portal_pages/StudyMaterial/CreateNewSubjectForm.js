@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import "../Student-info/AddStudent.css";
 import { Subjectwisecontentdemodata } from "./subjectwisecontentdemodata";
-
+import axios from 'axios'
 
 function CreateNewSubjectForm() {
   const initialValues = {
@@ -21,7 +21,12 @@ function CreateNewSubjectForm() {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
-    Subjectwisecontentdemodata.push({title:initialValues.title,subtitle:initialValues.subtitle,imgUrl:initialValues.imgUrl});
+    const newSubject = {
+      title:values.title,
+      subtitle:values.subtitle,
+      imgUrl:values.imgUrl
+    }
+     axios.post('http://localhost:8000/createSubject',newSubject);        
     this.props.history.push('./subjectwise');
 
   };
@@ -55,12 +60,12 @@ function CreateNewSubjectForm() {
                 label="imgUrl"
                 name="imgUrl"
               />
-              <FormikControl
+              {/* <FormikControl
                 control="input"
                 type="file"
                 label="imgUrl"
                 name="imgUrl"
-              />
+              /> */}
 
              
                 <button type="submit" className="btn btn-primary">
