@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import MenuButton from "../../../components/MenuButton";
 import {
   Container,
@@ -9,9 +9,26 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MdDelete, MdCreate, MdPerson } from "react-icons/md";
-import { StudentlistDataDemo } from "./Studentlistdatademo";
+
 
 function Student_Info() {
+  const [students,setStudents]=useState([{
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",    
+    guardianName: "",
+   
+  }])
+
+  useEffect(()=>{
+     fetch("/students").then(res=>{
+      if(res.ok){
+        return res.json()
+      }
+    }).then(jsonRes=>setStudents(jsonRes));
+  },[])
+
   return (
     <div className="student_info">
       <h1 style={{ textAlign: "center" }}>Student_Info</h1>
@@ -36,8 +53,8 @@ function Student_Info() {
           <thead>
             <tr>
               <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Student Name</th>
+              
               <th>Username</th>
               <th>Mobile No.</th>
               <th>Guardian Name</th>
@@ -45,12 +62,12 @@ function Student_Info() {
             </tr>
           </thead>
           <tbody>
-            {StudentlistDataDemo.map((item, index) => {
+            {students.map((item, index) => {
               return (
                 <tr>
                   <td>{item.rollno}</td>
-                  <td>{item.firstName}</td>
-                  <td>{item.lastName}</td>
+                  <td>{item.firstName+" "+item.lastName}</td>
+                  
                   <td>{item.email}</td>
                   <td>{item.mobileNumber}</td>
                   <td>{item.guardianName}</td>

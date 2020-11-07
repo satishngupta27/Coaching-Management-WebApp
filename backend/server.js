@@ -24,15 +24,19 @@ mongoose
 
 // app middlewares
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 //app.use(bodyParser.json({limit:'5mb',type:'application/json'}));
 app.use(cors());
+app.use(express.json())
 //app.use(cors({ origin: process.env.CLIENT_URL }));
 
 // middlewares
 // app.use("/api", authRoutes);
 // app.use("/api", userRoutes);
 // app.use("/api", categoryRoutes);
+
+app.use("/",require('./routes/subject'));
+app.use("/",require('./routes/student'));
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`API is running on port ${port}`));

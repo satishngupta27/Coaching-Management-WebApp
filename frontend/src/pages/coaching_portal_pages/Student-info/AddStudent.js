@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import "./AddStudent.css";
+import axios from 'axios';
 
 function AddStudent() {
   const history = useHistory();
@@ -28,8 +29,7 @@ function AddStudent() {
     firstName: "",
     lastName: "",
     email: "",
-    mobileNumber: "",
-    
+    mobileNumber: "",    
     selectBatchOption: "",
     GenderRadioOption: "",
     guardianName: "",
@@ -37,7 +37,6 @@ function AddStudent() {
     address: "",
     state: "",
     city: "",
-
     birthDate: null,
   };
   const validationSchema = Yup.object({
@@ -45,8 +44,7 @@ function AddStudent() {
     lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid Email Format").required("Required"),
     mobileNumber: Yup.string().required("Required"),
-    selectBatchOption: Yup.string().required("Required"),
-    
+    selectBatchOption: Yup.string().required("Required"),    
     GenderRadioOption: Yup.string().required("Required"),
     guardianName: Yup.string().required("Required"),
     guardianMobileNumber: Yup.string().required("Required"),
@@ -59,6 +57,23 @@ function AddStudent() {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    const newStudent={
+      firstName:values.firstName,
+    lastName:values.lastName,
+    email:values.email,
+    mobileNumber:values.mobileNumber,    
+    selectBatchOption:values.selectBatchOption,
+    GenderRadioOption:values.GenderRadioOption,
+    guardianName:values.guardianName,
+    guadianMobileNumber:values.guardianMobile,
+    address:values.address,
+    state:values.state,
+    city:values.city,
+    birthDate: values.birthDate,
+
+    }
+    axios.post('http://localhost:8000/addStudent',newStudent);
+
     
     history.push("/student_Info")
 
