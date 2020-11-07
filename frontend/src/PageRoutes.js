@@ -1,9 +1,7 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import "nprogress/nprogress.css";
+import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
 
 
 //imports pages for teacher
@@ -27,68 +25,93 @@ import Notes from "./pages/coaching_portal_pages/StudyMaterial/Notes";
 import AddAnswers from "./pages/coaching_portal_pages/StudentDoubt/addAnswers";
 import StudentDoubt from "./pages/coaching_portal_pages/StudentDoubt/Student_Doubt";
 
-
-
-
 //imports pages for students
 import MyDoubt from "./pages/Student_portal_pages/MyDoubt/MyDoubt";
 import MyProfile from "./pages/Student_portal_pages/MyProfile/MyProfile";
 import MyAssignment from "./pages/Student_portal_pages/MyAssignment/MyAssignment";
 import MyStudyMaterial from "./pages/Student_portal_pages/MyStudyMaterial/MyStudyMaterial";
-import SubmitAssignment from './pages/Student_portal_pages/MyAssignment/SubmitAssignment';
-import MyDashboard from './pages/Student_portal_pages/MyDashboard/MyDashboard'
-
+import SubmitAssignment from "./pages/Student_portal_pages/MyAssignment/SubmitAssignment";
+import MyDashboard from "./pages/Student_portal_pages/MyDashboard/MyDashboard";
 
 function PageRoutes(props) {
+  if (!props.isStudent) {
     return (
-        <Router>
-  <Navbar isStudent={props.isStudent}/>
-  <Switch>
-    {/* routes for teachers */}
-    <Route path="/" exact component={Dashboard} />
-    <Route path="/studymaterialType" exact component={StudyMaterialType} />
-    <Route path="/createNewSubjectForm" exact component={CreateNewsSubjectForm} />
-    <Route path="/createAssignmentForm"  exact component={CreateAssignmentForm} />
-    <Route path="/createNewBatchForm" exact component={CreateNewBatchForm} />
-    <Route path="/attendence" exact component={Attendence} />
-    <Route path="/uploadNotesForm" exact component={UploadNotesForm} />
-    <Route path="/subjectwise" exact component={SubjectWise} />
-    <Route path="/notes" exact component={Notes} />
-    <Route path="/batches" exact component={Batches} />
-    <Route path="/assignment" exact component={Assignment} />
-    <Route path="/student_Info" exact component={Student_Info} />
-    <Route path="/student_Info/addStudent" exact component={AddStudent} />
-    <Route path="/studentDoubt/:id" exact component ={ AddAnswers } />
-    <Route path="/studentDoubt" exact component ={ StudentDoubt } />
-    <Route
-      path="/student_Info/viewAllStudent"
-      exact
-      component={ViewAllStudent}
-    />
-    <Route
-      path="/student_Info/updateStudent"
-      exact
-      component={UpdateStudent}
-    />
-    <Route
-      path="/student_Info/studentprofile/:id"
-      exact
-      component={StudentProfile}
-    />
-
-
-    {/* routes for student */}
-    <Route path="/myDashboard" exact component={MyDashboard} />
-    <Route path="/myStudyMaterial" exact component={MyStudyMaterial} />
-    <Route path="/myStudyMaterialType" exact component={MyStudyMaterialType} />
-    <Route path="/myAssignment" exact component={MyAssignment} />
-    <Route path='/myAssignment/:id' exact component={SubmitAssignment}/>
-    <Route path="/myDoubt" exact component={MyDoubt} />
-    <Route path="/myProfile" exact component={MyProfile} />
-
-  </Switch>
-</Router>
-    )
+      <Router>
+        <Navbar isStudent={props.isStudent} />
+        <Switch>
+          {/* routes for teachers */}
+          <Route path="/" exact component={Dashboard} />
+          <Route
+            path="/studymaterialType"
+            exact
+            component={StudyMaterialType}
+          />
+          <Route
+            path="/createNewSubjectForm"
+            exact
+            component={CreateNewsSubjectForm}
+          />
+          <Route
+            path="/createAssignmentForm"
+            exact
+            component={CreateAssignmentForm}
+          />
+          <Route
+            path="/createNewBatchForm"
+            exact
+            component={CreateNewBatchForm}
+          />
+          <Route path="/attendence" exact component={Attendence} />
+          <Route path="/uploadNotesForm" exact component={UploadNotesForm} />
+          <Route path="/subjectwise" exact component={SubjectWise} />
+          <Route path="/notes" exact component={Notes} />
+          <Route path="/batches" exact component={Batches} />
+          <Route path="/assignment" exact component={Assignment} />
+          <Route path="/student_Info" exact component={Student_Info} />
+          <Route path="/student_Info/addStudent" exact component={AddStudent} />
+          <Route path="/studentDoubt/:id" exact component={AddAnswers} />
+          <Route path="/studentDoubt" exact component={StudentDoubt} />
+          <Route
+            path="/student_Info/viewAllStudent"
+            exact
+            component={ViewAllStudent}
+          />
+          <Route
+            path="/student_Info/updateStudent"
+            exact
+            component={UpdateStudent}
+          />
+          <Route
+            path="/student_Info/studentprofile/:id"
+            exact
+            component={StudentProfile}
+          />
+         <Redirect to="/" /> 
+        </Switch>
+      </Router>
+    );
+  } else {
+    return (
+      <Router>
+        <Navbar isStudent={props.isStudent} />
+        <Switch>
+          {/* routes for student */}
+          <Route path="/myDashboard" exact component={MyDashboard} />
+          <Route path="/myStudyMaterial" exact component={MyStudyMaterial} />
+          <Route
+            path="/myStudyMaterialType"
+            exact
+            component={MyStudyMaterialType}
+          />
+          <Route path="/myAssignment" exact component={MyAssignment} />
+          <Route path="/myAssignment/:id" exact component={SubmitAssignment} />
+          <Route path="/myDoubt" exact component={MyDoubt} />
+          <Route path="/myProfile" exact component={MyProfile} />
+          <Redirect to='/myDashboard'/>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default PageRoutes
+export default PageRoutes;
