@@ -7,7 +7,7 @@ import { AssignmentDemoData } from "../../coaching_portal_pages/Assignment/Assig
 
 function SubmitAssignment(props) {
   const id = props.match.params.id;
-  let obj = AssignmentDemoData.find((obj) => obj.id == id);
+  let obj = AssignmentDemoData.find((obj) => obj.id === id);
 
   const initialValues = {
     answer: "",
