@@ -10,12 +10,7 @@ import 'react-quill/dist/quill.snow.css';
 
 function CreateAssignmentForm() {
   const history = useHistory();
-  const branchDropDownOptions = [
-    { key: "Select a branch", value: "" },
-    { key: "Option 1", value: "option1" },
-    { key: "Option 2", value: "option2" },
-    { key: "Option 3", value: "option3" },
-  ];
+ 
   const batchDropDownOptions = [
     { key: "Select a batch", value: "" },
     { key: "Option 1", value: "option1" },
@@ -35,8 +30,7 @@ function CreateAssignmentForm() {
   const initialValues = {
     title: "",
     instruction: "",
-    selectSubjectOption: "",
-    
+    selectSubjectOption: "",    
     selectBatchOption: "",
     point: "",
     attachement: "",
@@ -45,10 +39,8 @@ function CreateAssignmentForm() {
   const validationSchema = Yup.object({
     title: Yup.string().required("Required"),
     instruction: Yup.string().optional(),
-
     subject: Yup.string().required("Required"),
-    selectBatchOption: Yup.string().required("Required"),
-    
+    selectBatchOption: Yup.string().required("Required"),    
     selectSubjectOption: Yup.string().required("Required"),
     point: Yup.string().required('required'),
     attachement: Yup.string().optional(),
@@ -121,7 +113,7 @@ function CreateAssignmentForm() {
                     label="Point"
                     name="point"
                   />
-                  <input type="file"/>
+                  {/* <input type="file"/> */}
                 {/* </Col>
               </Row> */}
               <Row style={{ justifyContent: "right" }}>

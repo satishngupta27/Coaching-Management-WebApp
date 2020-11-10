@@ -83,7 +83,7 @@ const studentSchema ={
         mobileNumber:String,
         batch:String,
         gender:String,
-        dob:Date,
+        birthDate:Date,
         guardianName:String,
         gurardianMobileNumber:String,
         address: String,

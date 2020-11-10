@@ -32,6 +32,7 @@ import MyAssignment from "./pages/Student_portal_pages/MyAssignment/MyAssignment
 import MyStudyMaterial from "./pages/Student_portal_pages/MyStudyMaterial/MyStudyMaterial";
 import SubmitAssignment from "./pages/Student_portal_pages/MyAssignment/SubmitAssignment";
 import MyDashboard from "./pages/Student_portal_pages/MyDashboard/MyDashboard";
+import AskDoubt from "./pages/Student_portal_pages/MyDoubt/AskDoubtForm";
 
 function PageRoutes(props) {
   if (!props.isStudent) {
@@ -106,8 +107,9 @@ function PageRoutes(props) {
           <Route path="/myAssignment" exact component={MyAssignment} />
           <Route path="/myAssignment/:id" exact component={SubmitAssignment} />
           <Route path="/myDoubt" exact component={MyDoubt} />
+          <Route path="/myDoubt/askDoubt" exact component={AskDoubt}/>
           <Route path="/myProfile" exact component={MyProfile} />
-          <Redirect to='/myDashboard'/>
+          {/* <Redirect to='/myDashboard'/> */}
         </Switch>
       </Router>
     );

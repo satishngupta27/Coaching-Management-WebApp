@@ -13,6 +13,7 @@ import { MdDelete, MdCreate, MdPerson } from "react-icons/md";
 
 function Student_Info() {
   const [students,setStudents]=useState([{
+    _id:"",
     firstName: "",
     lastName: "",
     email: "",
@@ -65,7 +66,7 @@ function Student_Info() {
             {students.map((item, index) => {
               return (
                 <tr>
-                  <td>{item.rollno}</td>
+                  <td>{item._id}</td>
                   <td>{item.firstName+" "+item.lastName}</td>
                   
                   <td>{item.email}</td>
@@ -78,7 +79,7 @@ function Student_Info() {
                       overlay={<Tooltip>Click to view Profile</Tooltip>}
                     >
                       <Link
-                        to={`./Student_Info/studentprofile/${item.firstName}`}
+                        to={`./Student_Info/studentprofile/${item._id}`}
                       >
                         <span>
                           <MdPerson />

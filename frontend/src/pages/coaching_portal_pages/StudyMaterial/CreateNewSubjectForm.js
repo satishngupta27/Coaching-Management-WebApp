@@ -1,13 +1,14 @@
 import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import "../Student-info/AddStudent.css";
-import { Subjectwisecontentdemodata } from "./subjectwisecontentdemodata";
-import axios from 'axios'
+import axios from 'axios';
 
 function CreateNewSubjectForm() {
+  const history = useHistory();
   const initialValues = {
     title: "",
     subtitle: "",
@@ -19,6 +20,7 @@ function CreateNewSubjectForm() {
     imgUrl:Yup.string().required("Required"),
   });
   const onSubmit = (values) => {
+    
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
     const newSubject = {
@@ -27,7 +29,7 @@ function CreateNewSubjectForm() {
       imgUrl:values.imgUrl
     }
      axios.post('http://localhost:8000/createSubject',newSubject);        
-    this.props.history.push('./subjectwise');
+    history.push('/subjectwise');
 
   };
 
