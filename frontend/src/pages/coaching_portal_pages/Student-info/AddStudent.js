@@ -9,12 +9,7 @@ import axios from 'axios';
 
 function AddStudent() {
   const history = useHistory();
-  const branchDropDownOptions = [
-    { key: "Select a branch", value: "" },
-    { key: "Option 1", value: "option1" },
-    { key: "Option 2", value: "option2" },
-    { key: "Option 3", value: "option3" },
-  ];
+  
   const batchDropDownOptions = [
     { key: "Select a batch", value: "" },
     { key: "Option 1", value: "option1" },
@@ -57,13 +52,15 @@ function AddStudent() {
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+   // const newStudent=JSON.parse(JSON.stringify(values));
+
     const newStudent={
       firstName:values.firstName,
     lastName:values.lastName,
     email:values.email,
     mobileNumber:values.mobileNumber,    
-    selectBatchOption:values.selectBatchOption,
-    GenderRadioOption:values.GenderRadioOption,
+    batch:values.selectBatchOption,
+    gender:values.GenderRadioOption,
     guardianName:values.guardianName,
     guadianMobileNumber:values.guardianMobile,
     address:values.address,
