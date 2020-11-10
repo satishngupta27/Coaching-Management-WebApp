@@ -9,16 +9,16 @@ function MyDashboard() {
   return (
     <>
     <Container >
-      <Row style={{justifyContent:'Space-between',textAlign:'right'}}>
+      <Row style={{justifyContent:'space-between',textAlign:'right'}}>
         <GreetingUser/>
         <DateAndTime/>
       </Row>
       <Row style={{margin:'auto'}}>
-        <OverviewCard title={'Total Student'} value={'560'}/>
-        <OverviewCard title={'Braches'} value={'2'}/>
-        <OverviewCard title={'Batches'} value={'6'}/>
-        <OverviewCard title={'Teachers'} value={'10'}/>
-        <OverviewCard title={'Subjects'} value={'5'}/>
+        
+        <OverviewCard title={'Subjects'} value={'2'}/>
+        <OverviewCard title={'Batches'} value={'2nd'}/>
+        <OverviewCard title={'Teachers'} value={'google'}/>
+       
         
       </Row>
     </Container>
