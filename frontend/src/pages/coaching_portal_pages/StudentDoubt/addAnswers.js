@@ -48,8 +48,9 @@ function AddAnswers(props) {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Answer Doubt{doubt.question}</h1>
+      <h1 style={{ textAlign: "center" }}>Answer Doubt</h1>
       <Container>
+  <h2>{doubt.question}</h2>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
