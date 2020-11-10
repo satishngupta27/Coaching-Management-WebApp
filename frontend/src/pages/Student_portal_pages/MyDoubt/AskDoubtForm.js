@@ -4,9 +4,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 function AskDoubtForm() {
-
+  const history = useHistory();
     const initialValues = {
         question: "",
       };
@@ -24,6 +25,7 @@ function AskDoubtForm() {
     
         }
         axios.post('http://localhost:8000/askDoubt',newDoubt);
+        history.push("/myDoubt")
     
         
       
