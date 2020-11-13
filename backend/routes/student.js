@@ -48,7 +48,16 @@ router.route("/students/:id").put( async (req,res) => {
 router.route("/students/:id").delete( async (req,res) =>{
   const id = req.params.id;
   const deletestudent = await Student.findByIdAndDelete(id);
-}
-  )
+})
+
+router.route("/countStudents").get(function(req, res) {
+  Student.count({}, function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 
 module.exports = router;
