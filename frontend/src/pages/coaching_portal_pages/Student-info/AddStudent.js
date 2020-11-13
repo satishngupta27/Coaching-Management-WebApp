@@ -129,7 +129,7 @@ function AddStudent() {
 
                   <FormikControl
                     control="date"
-                    label="Pick a date"
+                    label="pick date of birth"
                     name="birthDate"
                   />
                 </Col>
