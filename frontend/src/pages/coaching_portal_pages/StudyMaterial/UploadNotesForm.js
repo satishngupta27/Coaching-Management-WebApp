@@ -4,6 +4,8 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../../components/FormComponents/FormikControl";
 import "../Student-info/AddStudent.css";
+import axios from 'axios';
+
 
 function UploadNotesForm() {
   const notesTypedropdownOptions = [
@@ -17,18 +19,37 @@ function UploadNotesForm() {
     TopicName: "",
     WrittenBy:"",
     notesTypedropdownOptions:"",
-    videoLink:""
+    content:""
+    //videoLink:""
   };
   const validationSchema = Yup.object({
     ChapterName: Yup.string().required("Required"),
     TopicName: Yup.string().required("Required"),
     WrittenBy:Yup.string().required("Required"),
     notesTypedropdownOptions:Yup.string().required("Required"),
-    videoLink:Yup.string()
+    
+   // videoLink:Yup.string()
   });
+
+  // const handleImage = event => {
+    
+  //   if (event.target.files[0]) {
+  //     console.log(event.target.files[0])
+       
+  //   }
+    //setImageUploadButtonName(event.target.files[0].name);
+   
+//};
   const onSubmit = (values) => {
+    let data = new FormData();
+    data.append("content",values.content);
+    console.log("file data",data)
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+
+
+    axios.post('http://localhost:8000/studyMaterials',values).then(console.log("uploaded"));
+
   };
 
   return (
@@ -66,13 +87,15 @@ function UploadNotesForm() {
             name='notesTypedropdownOptions'
             options={notesTypedropdownOptions}
           />
-          <FormikControl
+          {/* <FormikControl
                 control="input"
                 type="text"
                 label="Link of content"
                 name="videoLink"
-              />
-              <input type='file'/>
+              /> */}
+              <input className="form-group" type='file' name="content" onChange={
+                (event)=>formik.setFieldValue("content",event.target.files[0])
+              }/>
 
               <Row style={{ justifyContent: "right" }}>
                 <button type="submit" className="btn btn-primary">
