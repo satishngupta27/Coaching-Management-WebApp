@@ -15,11 +15,11 @@ function UploadNotesForm() {
     { key: 'Option 3', value: 'option3' }
   ]
   const initialValues = {
-    ChapterName: "",
-    TopicName: "",
-    WrittenBy:"",
-    notesTypedropdownOptions:"",
-    content:""
+    ChapterName: "s",
+    TopicName: "s",
+    WrittenBy:"s",
+    notesTypedropdownOptions:"option3",
+    content:null
     //videoLink:""
   };
   const validationSchema = Yup.object({
@@ -42,13 +42,19 @@ function UploadNotesForm() {
 //};
   const onSubmit = (values) => {
     let data = new FormData();
+   
     data.append("content",values.content);
-    console.log("file data",data)
-    console.log("Form data", values);
-    console.log("Saved data", JSON.parse(JSON.stringify(values)));
+   console.log("data",data)
 
+    console.log("Form data", values.content);
+    console.log("Saved data", JSON.parse(JSON.stringify(values.content)));
 
-    axios.post('http://localhost:8000/studyMaterials',values).then(console.log("uploaded"));
+    axios.post('http://localhost:8000/studyMaterials',values.content,{
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }}
+    );
+    
 
   };
 
@@ -87,12 +93,7 @@ function UploadNotesForm() {
             name='notesTypedropdownOptions'
             options={notesTypedropdownOptions}
           />
-          {/* <FormikControl
-                control="input"
-                type="text"
-                label="Link of content"
-                name="videoLink"
-              /> */}
+          
               <input className="form-group" type='file' name="content" onChange={
                 (event)=>formik.setFieldValue("content",event.target.files[0])
               }/>
