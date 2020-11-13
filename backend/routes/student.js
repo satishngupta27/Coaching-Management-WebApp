@@ -39,16 +39,25 @@ router.route("/students").get((req, res) => {
   Student.find().then((students) => res.json(students));
 });
 
-router.route("/student/:id").put( async (req,res) => {
+router.route("/students/:id").put( async (req,res) => {
   const id  = req.params.id;
   const update = await Student.findByIdAndUpdate(id, req.body, {runValidators:true});
   console.log(update);
 })
 
-router.route("/student/:id").delete( async (req,res) =>{
+router.route("/students/:id").delete( async (req,res) =>{
   const id = req.params.id;
   const deletestudent = await Student.findByIdAndDelete(id);
-}
-  )
+})
+
+router.route("/countStudents").get(function(req, res) {
+  Student.count({}, function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 
 module.exports = router;
