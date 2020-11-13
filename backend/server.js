@@ -38,6 +38,8 @@ app.use(express.json())
 app.use("/",require('./routes/subject'));
 app.use("/",require('./routes/student'));
 app.use("/",require('./routes/doubt'));
+app.use("/",require('./routes/batch'));
+app.use("/",require('./routes/studyMaterial'));
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`API is running on port ${port}`));
