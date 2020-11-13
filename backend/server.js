@@ -3,7 +3,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const fileUpload = require('express-fileupload');
 require("dotenv").config();
+
 
 const app = express();
 
@@ -28,6 +30,7 @@ app.use(morgan("dev"));
 //app.use(bodyParser.json({limit:'5mb',type:'application/json'}));
 app.use(cors());
 app.use(express.json())
+app.use(fileUpload())
 //app.use(cors({ origin: process.env.CLIENT_URL }));
 
 // middlewares
