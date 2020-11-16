@@ -16,10 +16,10 @@ function UploadNotesForm() {
     { key: 'Option 3', value: 'option3' }
   ]
   const initialValues = {
-    ChapterName: "s",
-    TopicName: "s",
-    WrittenBy:"s",
-    notesTypedropdownOptions:"option3",
+    ChapterName: "",
+    TopicName: "",
+    WrittenBy:"",
+    notesTypedropdownOptions:"",
     
     //videoLink:""
   };
