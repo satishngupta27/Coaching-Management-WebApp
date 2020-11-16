@@ -30,7 +30,9 @@ app.use(morgan("dev"));
 //app.use(bodyParser.json({limit:'5mb',type:'application/json'}));
 app.use(cors());
 app.use(express.json())
-app.use(fileUpload())
+app.use(express.static('public'));
+app.use(fileUpload({ useTempFiles : true,
+  tempFileDir : '/backend/helpers'}))
 //app.use(cors({ origin: process.env.CLIENT_URL }));
 
 // middlewares
