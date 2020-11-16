@@ -23,7 +23,7 @@ function NotesCard(props) {
            Type : {props.type}
           </Card.Text>
           <Card.Text>
-           Link : {props.link}
+           Link :<a href={props.link} target='_blank'>click to open</a> 
           </Card.Text>
           
         </Card.Body>
