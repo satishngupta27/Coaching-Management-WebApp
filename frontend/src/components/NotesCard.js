@@ -5,7 +5,11 @@ import logo from '../logo.svg';
 function NotesCard(props) {
   return (
     <>
-      <Card style={{ width: "20rem", margin:'20px'}}>
+
+
+
+      <Card style={{ width: "30rem", margin:'20px'}}>
+
         
         <Card.Body>
           <Card.Title>Chapter Name : {props.ChapterName}</Card.Title>
@@ -15,6 +19,13 @@ function NotesCard(props) {
           <Card.Text>
            Written by : {props.writtenBy}
           </Card.Text>
+          <Card.Text>
+           Type : {props.type}
+          </Card.Text>
+          <Card.Text>
+           Link : {props.link}
+          </Card.Text>
+          
         </Card.Body>
       </Card>
     </>
