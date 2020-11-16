@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 function UploadNotesForm() {
+  const [file, setFile] = useState(null);
   const notesTypedropdownOptions = [
     { key: 'Select an option', value: '' },
     { key: 'Option 1', value: 'option1' },
@@ -19,7 +20,7 @@ function UploadNotesForm() {
     TopicName: "",
     WrittenBy:"",
     notesTypedropdownOptions:"",
-    content:""
+    
     //videoLink:""
   };
   const validationSchema = Yup.object({
@@ -41,14 +42,35 @@ function UploadNotesForm() {
    
 //};
   const onSubmit = (values) => {
-    let data = new FormData();
-    data.append("content",values.content);
-    console.log("file data",data)
+    let formData = new FormData();
+   
+    formData.append("file",file[0]);
+   
+   
+
     console.log("Form data", values);
-    console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    //console.log("Saved data", JSON.parse(JSON.stringify(values.content)));
+   
+    formData.append("ChapterName",values.ChapterName)
+    formData.append("TopicName",values.TopicName)
+    formData.append("WrittenBy",values.WrittenBy)
+    formData.append("notesTypedropdownOptions",values.notesTypedropdownOptions)
+   
+   
+    axios.post('http://localhost:8000/studyMaterials',formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }}
+      ).then(res=>{
+        console.log(res.data)
+      }).catch(err=>{
+        console.log(err)
+      })
+     
+  
 
-
-    axios.post('http://localhost:8000/studyMaterials',values).then(console.log("uploaded"));
+   
+    
 
   };
 
@@ -87,14 +109,9 @@ function UploadNotesForm() {
             name='notesTypedropdownOptions'
             options={notesTypedropdownOptions}
           />
-          {/* <FormikControl
-                control="input"
-                type="text"
-                label="Link of content"
-                name="videoLink"
-              /> */}
-              <input className="form-group" type='file' name="content" onChange={
-                (event)=>formik.setFieldValue("content",event.target.files[0])
+          
+              <input className="form-group" type='file'  onChange={
+                (event)=>setFile(event.target.files)
               }/>
 
               <Row style={{ justifyContent: "right" }}>

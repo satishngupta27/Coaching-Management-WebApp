@@ -9,6 +9,8 @@ import StudyMaterialType from "./pages/coaching_portal_pages/StudyMaterial/study
 import MyStudyMaterialType from "./pages/Student_portal_pages/MyStudyMaterial/MystudyMaterialType";
 import SubjectWise from "./pages/coaching_portal_pages/StudyMaterial/SubjectWise";
 import Assignment from "./pages/coaching_portal_pages/Assignment/Assignment";
+import AssignmentInfo from "./pages/coaching_portal_pages/Assignment/AssignmentInfo";
+
 import Attendence from "./pages/coaching_portal_pages/Attendence/Attendence";
 import CreateNewsSubjectForm from "./pages/coaching_portal_pages/StudyMaterial/CreateNewSubjectForm";
 import CreateAssignmentForm from "./pages/coaching_portal_pages/Assignment/CreateAssignmentForm";
@@ -68,6 +70,7 @@ function PageRoutes(props) {
           <Route path="/notes" exact component={Notes} />
           <Route path="/batches" exact component={Batches} />
           <Route path="/assignment" exact component={Assignment} />
+          <Route path="/assignment/:id" exact component={AssignmentInfo} />
           <Route path="/student_Info" exact component={Student_Info} />
           <Route path="/student_Info/addStudent" exact component={AddStudent} />
           <Route path="/studentDoubt/:id" exact component={AddAnswers} />
