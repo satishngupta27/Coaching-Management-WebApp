@@ -40,7 +40,7 @@ const {ObjectId}=mongoose.Schema;
 
 
 const studyMaterialSchema={
-    chapterName:String,
+    ChapterName:String,
     TopicName:String,
     WrittenBy:String,
     contentType:String,
