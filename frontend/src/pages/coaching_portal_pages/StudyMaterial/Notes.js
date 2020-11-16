@@ -43,7 +43,7 @@ function Notes() {
               <NotesCard ChapterName={item.ChapterName} TopicName={item.TopicName} writtenBy={item.WrittenBy} link={item.content.url} type={item.contentType}/>
             );
           })}
-          <Link to="#"></Link>
+          
         </Row>
       </Container>
     </div>
