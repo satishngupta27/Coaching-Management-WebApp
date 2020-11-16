@@ -35,7 +35,7 @@ router.route("/studyMaterials").post(async (req, res) => {
   //upload image to s3
   const params = {
     Bucket: "mystudynotesbucket",
-    Key: `${req.files.file.name}`,
+    Key: `notes/${req.files.file.name}`,
     Body: fs.readFileSync(req.files.file.tempFilePath),
     ACL: "public-read",
     ContentType: `application/pdf`,
