@@ -38,7 +38,11 @@ function Assignment() {
           <h1>All assignment</h1>
         </Row>
         {assignments.map((item, index) => {
-          return <AssignmentCard title={item.title} dueDate={item.dueDate} subject={item.subject}/>;
+          return (
+            <Link to={`./assignment/${item._id}`} style={{textDecoration:'none'}}>
+          <AssignmentCard title={item.title} dueDate={item.dueDate} subject={item.subject}/>
+          </Link>
+          );
         })}
       </Container>
     </div>
