@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,8 +7,10 @@ import FormikControl from "../../../components/FormComponents/FormikControl";
 import "../Student-info/AddStudent.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
+import axios from 'axios';
 
 function CreateAssignmentForm() {
+  const [file, setFile] = useState(null);
   const history = useHistory();
  
   const batchDropDownOptions = [
@@ -30,10 +32,9 @@ function CreateAssignmentForm() {
   const initialValues = {
     title: "",
     instruction: "",
-    selectSubjectOption: "",    
+    subject: "",    
     selectBatchOption: "",
     point: "",
-    attachement: "",
     dueDate: null,
   };
   const validationSchema = Yup.object({
@@ -41,15 +42,36 @@ function CreateAssignmentForm() {
     instruction: Yup.string().optional(),
     subject: Yup.string().required("Required"),
     selectBatchOption: Yup.string().required("Required"),    
-    selectSubjectOption: Yup.string().required("Required"),
-    point: Yup.string().required('required'),
-    attachement: Yup.string().optional(),
+   
+    point: Yup.string().required('required'),   
     dueDate: Yup.date().required("Required").nullable(),
   });
   const onSubmit = (values) => {
+    let formData = new FormData();
+   
+    formData.append("file",file[0]);
+   
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
-    history.push("/assignment");
+    formData.append("title",values.title)
+    formData.append("instruction",values.instruction)
+    formData.append("subject",values.subject)
+    formData.append("selectBatchOption",values.selectBatchOption)
+    formData.append("point",values.point)
+    formData.append("dueDate",values.dueDate)
+
+    axios.post('http://localhost:8000/addAssignment',formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }}
+      ).then(res=>{
+        console.log(res.data)
+      }).catch(err=>{
+        console.log(err)
+      })
+    
+
+    //history.push("/assignment");
   };
 
   return (
@@ -96,7 +118,7 @@ function CreateAssignmentForm() {
                   <FormikControl
                     control="select"
                     label="Select a Subject"
-                    name="selectSubjectOption"
+                    name="subject"
                     options={subjectDropDownOptions}
                   />
                   <FormikControl
@@ -113,7 +135,10 @@ function CreateAssignmentForm() {
                     label="Point"
                     name="point"
                   />
-                  {/* <input type="file"/> */}
+                  <input className="form-group" type='file'  onChange={
+                (event)=>setFile(event.target.files)
+              }/>
+
                 {/* </Col>
               </Row> */}
               <Row style={{ justifyContent: "right" }}>
