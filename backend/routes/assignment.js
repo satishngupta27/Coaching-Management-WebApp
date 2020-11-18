@@ -111,5 +111,28 @@ router.route("/assignment/submit/:id").put(async (req,res)=>{
   }})
 } )
 
+router.route('/submissionCount/:id').get((req,res)=>{
+  const id  = req.params.id;
+  try{
+    Assignment.findById(id,(err,submit)=>{
+       
+       const sCount = submit.studentAttachments.length;
+      //  submit.studentAttachments.count({}, function(err, result) {
+      //   if (err) {
+      //     console.log(err);
+      //   } else {
+      //     res.json(result);
+      //   }
+      // });
+      res.json(sCount)
+   });
+}catch (err){
+   console.log(err);
+}
+
+
+
+})
+
 
 module.exports = router;
