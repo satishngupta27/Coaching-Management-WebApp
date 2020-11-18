@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function AssignmentInfo(props) {
     const id= props.match.params.id;
+    const[submissionCount,setSubmissionCount]=useState(0);
     const [assignment,setAssignment]=useState({
         _id:"",
         title:"",
@@ -21,8 +22,14 @@ function AssignmentInfo(props) {
             return res.json()
           }
         }).then(jsonRes=>setAssignment(jsonRes))
+        fetch(`/submissionCount/${id}`).then(res=>{
+          if(res.ok){
+            return res.json()
+          }
+        }).then(jsonRes=>setSubmissionCount(jsonRes))
       },[])
-      console.log(assignment)
+      //console.log(assignment)
+
     
     return (
         <Container className='mt-3'>
@@ -46,7 +53,7 @@ function AssignmentInfo(props) {
                 </Col>
                 <Col>
                 <Container>
-    <h5>Number of Submission: {2}</h5>
+    <h5>Number of Submission: {submissionCount}</h5>
                 </Container>
                 
                 </Col>
