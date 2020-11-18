@@ -40,7 +40,7 @@ function Assignment() {
         {assignments.map((item, index) => {
           return (
             <Link to={`./assignment/${item._id}`} style={{textDecoration:'none'}}>
-          <AssignmentCard title={item.title} dueDate={item.dueDate} subject={item.subject}/>
+          <AssignmentCard title={item.title} dueDate={item.dueDate && item.dueDate.slice(0,15)} subject={item.subject}/>
           </Link>
           );
         })}
