@@ -73,4 +73,43 @@ router.route('/assignment/:id').get((req,res)=>{
     var _id = req.params.id
     Assignment.findById(_id).then((result)=>res.json(result))
 })
+
+router.route("/assignment/submit/:id").put(async (req,res)=>{
+  const {name,answer}=req.body
+  const id  = req.params.id;
+
+  const params = {
+    Bucket: "mystudynotesbucket",
+    Key: `assignments/${req.files.file.name}`,
+    Body: fs.readFileSync(req.files.file.tempFilePath),
+    ACL: "public-read",
+    ContentType: `application/pdf`,
+  };
+
+  s3.upload(params, (err, data) => {
+    if (err) {
+      console.log("upload fail", err);
+      return res.status(400).json({ error: "upload to s3 failed" });
+    }
+    console.log("AWS UPLOAD RES DATA", data);
+
+    // assignment.teacherAttachments.url = data.Location;
+    // assignment.teacherAttachments.key = data.Key;
+    url=data.Location;
+          key=data.key;
+      
+
+  try{
+       Assignment.findById(id,(err,submit)=>{
+          
+          submit.studentAttachments.push({answer,name,url,key});
+          submit.save();
+          res.send("answered");
+      });
+  }catch (err){
+      console.log(err);
+  }})
+} )
+
+
 module.exports = router;
