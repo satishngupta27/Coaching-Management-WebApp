@@ -69,7 +69,12 @@ function AddStudent() {
     birthDate: values.birthDate,
 
     }
-    axios.post('http://localhost:8000/addStudent',newStudent);
+    try{
+      axios.post('http://localhost:8000/addStudent',newStudent);
+    }catch(err){
+      console.log(err)
+    }
+    
 
     
     history.push("/student_Info")
