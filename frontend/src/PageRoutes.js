@@ -112,6 +112,7 @@ function PageRoutes(props) {
           <Route path="/myDoubt" exact component={MyDoubt} />
           <Route path="/myDoubt/askDoubt" exact component={AskDoubt}/>
           <Route path="/myProfile" exact component={MyProfile} />
+          <Route path="/notes" exact component={Notes} />
           {/* <Redirect to='/myDashboard'/> */}
         </Switch>
       </Router>
