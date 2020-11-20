@@ -4,9 +4,11 @@ import poster from "./components/img/poster.png";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./components/FormComponents/FormikControl";
+import axios from 'axios';
 
 
 function Login(props) {
+  const respond=""
   
   const [isStudent, setIsStudent] = useState(props.isStudent);
   const handleLoginState=()=>{
@@ -23,11 +25,26 @@ function Login(props) {
     password: Yup.string().required("Required"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
-    if(values.email==='satish@gmail.com' && values.password==='12345678'){props.handleIsLogin()}
-    
+    const student={
+      email:values.email,
+      password:values.password
+    }
+
+    try{
+       respond= await axios.post('http://localhost:8000/studentLogin',student);
+      
+      console.log("hello",respond)
+      if(respond){props.handleIsLogin()}
+    }catch(err){
+      console.log(err)
+    }
+    console.log(respond)
+
+    //if(values.email==='satish@gmail.com' && values.password==='12345678'){props.handleIsLogin()}
+   
   };
 
   return (
