@@ -79,35 +79,22 @@ router.route('/studentLogin').post((req,res)=>{
     Student.findOne({ email }).exec((err, user) => {
       if (err || !user) {
           return res.status(400).json({
-              error: 'User with that email does not exist. Please register.',
+              message: 'User with that email does not exist. Please register.',
               valid:false
           });
       }
       if(password!=user.mobileNumber){
         return res.status(400).json({
-          error:"password is not correct",
+          message:"password is not correct",
           valid:false
         })
       }
       
       return res.status(200).json({
-        success: 'login success',
+        message: 'login success',
         valid:true
     });
-      // authenticate
-      // if (!user.authenticate(password)) {
-      //     return res.status(400).json({
-      //         error: 'Email and password do not match'
-      //     });
-      // }
-      // generate token and send to client
-      // const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-      // const { _id, name, email, role } = user;
-
-      // return res.json({
-      //     token,
-      //     user: { _id, name, email, role }
-      // });
+     
   });
 })
 
