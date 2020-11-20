@@ -33,7 +33,7 @@ function StudentProfile(props) {
  console.log(student.firstName)
  
   return (
-    <Container >
+    <Container className={'mt-3'}>
       <Row>
         <Col>
           <Card style={{ width: "18rem" }}>
