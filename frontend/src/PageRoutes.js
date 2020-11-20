@@ -21,7 +21,7 @@ import Batches from "./pages/coaching_portal_pages/Batch/Batch";
 import Student_Info from "./pages/coaching_portal_pages/Student-info/Student_Info";
 import AddStudent from "./pages/coaching_portal_pages/Student-info/AddStudent";
 import ViewAllStudent from "./pages/coaching_portal_pages/Student-info/ViewAllStudent";
-import UpdateStudent from "./pages/coaching_portal_pages/Student-info/UpdateStudent";
+import EditStudent from "./pages/coaching_portal_pages/Student-info/EditStudent";
 import StudentProfile from "./pages/coaching_portal_pages/Student-info/StudentProfile";
 import Notes from "./pages/coaching_portal_pages/StudyMaterial/Notes";
 import AddAnswers from "./pages/coaching_portal_pages/StudentDoubt/addAnswers";
@@ -81,9 +81,9 @@ function PageRoutes(props) {
             component={ViewAllStudent}
           />
           <Route
-            path="/student_Info/updateStudent"
+            path="/student_Info/editStudent/:id"
             exact
-            component={UpdateStudent}
+            component={EditStudent}
           />
           <Route
             path="/student_Info/studentprofile/:id"
