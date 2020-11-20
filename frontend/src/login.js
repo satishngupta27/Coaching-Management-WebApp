@@ -8,7 +8,12 @@ import axios from 'axios';
 
 
 function Login(props) {
-  const respond=""
+  
+  const [response,setResponse]=useState({
+    
+    Valid:"",
+    message:""
+  })
   
   const [isStudent, setIsStudent] = useState(props.isStudent);
   const handleLoginState=()=>{
@@ -28,23 +33,24 @@ function Login(props) {
   const onSubmit = async (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
-    const student={
+    const user={
       email:values.email,
       password:values.password
     }
 
     try{
-       respond= await axios.post('http://localhost:8000/studentLogin',student);
+       const respond= await axios.post(`http://localhost:8000/${isStudent?'studentLogin':'teacherLogin'}`,user);
       
-      console.log("hello",respond)
-      if(respond){props.handleIsLogin()}
+      //console.log(respond.data)
+       setResponse(respond.data)
+      console.log(response)
+      if(respond.data.valid){props.handleIsLogin()}
     }catch(err){
       console.log(err)
     }
-    console.log(respond)
-
-    //if(values.email==='satish@gmail.com' && values.password==='12345678'){props.handleIsLogin()}
    
+
+    
   };
 
   return (
