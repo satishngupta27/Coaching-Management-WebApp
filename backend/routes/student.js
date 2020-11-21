@@ -73,10 +73,10 @@ router.route("/countStudents").get(function(req, res) {
   });
 });
 
-router.route('/studentLogin').post((req,res)=>{
+router.route('/studentLogin').post(async(req,res)=>{
    const { email, password } = req.body;
    console.table({ email, password });
-    Student.findOne({ email }).exec((err, user) => {
+   await Student.findOne({ email }).exec((err, user) => {
       if (err || !user) {
           return res.status(400).json({
               message: 'User with that email does not exist. Please register.',
@@ -92,7 +92,8 @@ router.route('/studentLogin').post((req,res)=>{
       
       return res.status(200).json({
         message: 'login success',
-        valid:true
+        valid:true,
+        id:user._id
     });
      
   });

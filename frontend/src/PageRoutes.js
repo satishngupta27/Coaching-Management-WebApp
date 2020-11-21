@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
-import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 //imports pages for teacher
 import StudyMaterialType from "./pages/coaching_portal_pages/StudyMaterial/studyMaterialType";
@@ -37,6 +41,18 @@ import MyDashboard from "./pages/Student_portal_pages/MyDashboard/MyDashboard";
 import AskDoubt from "./pages/Student_portal_pages/MyDoubt/AskDoubtForm";
 
 function PageRoutes(props) {
+  const [userId, setUserId] = useState("");
+  //const userId = props.userId;
+  useEffect(() => {
+    //   fetch("/subjects").then(res=>{
+    //    if(res.ok){
+    //      return res.json()
+    //    }
+    //  }).then(jsonRes=>setSubjects(jsonRes));
+    setUserId(props.userId);
+  }, []);
+
+  console.log("page routers uid", userId);
   if (!props.isStudent) {
     return (
       <Router>
@@ -90,7 +106,7 @@ function PageRoutes(props) {
             exact
             component={StudentProfile}
           />
-         <Redirect to="/" /> 
+          <Redirect to="/" />
         </Switch>
       </Router>
     );
@@ -110,8 +126,13 @@ function PageRoutes(props) {
           <Route path="/myAssignment" exact component={MyAssignment} />
           <Route path="/myAssignment/:id" exact component={SubmitAssignment} />
           <Route path="/myDoubt" exact component={MyDoubt} />
-          <Route path="/myDoubt/askDoubt" exact component={AskDoubt}/>
-          <Route path="/myProfile" exact component={MyProfile} />
+          <Route path="/myDoubt/askDoubt" exact component={AskDoubt} />
+          <Route
+            path="/myProfile"
+            exact
+            component={MyProfile}
+            userId={userId}
+          />
           <Route path="/notes" exact component={Notes} />
           {/* <Redirect to='/myDashboard'/> */}
         </Switch>

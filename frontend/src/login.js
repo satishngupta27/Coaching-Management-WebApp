@@ -4,22 +4,19 @@ import poster from "./components/img/poster.png";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./components/FormComponents/FormikControl";
-import axios from 'axios';
-
+import axios from "axios";
 
 function Login(props) {
-  
-  const [response,setResponse]=useState({
-    
-    Valid:"",
-    message:""
-  })
-  
+  const [response, setResponse] = useState({
+    Valid: "",
+    message: "",
+  });
+
   const [isStudent, setIsStudent] = useState(props.isStudent);
-  const handleLoginState=()=>{
+  const handleLoginState = () => {
     setIsStudent(!isStudent);
-    props.handleIsStudent()
-  }
+    props.handleIsStudent();
+  };
 
   const initialValues = {
     email: "",
@@ -33,24 +30,27 @@ function Login(props) {
   const onSubmit = async (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
-    const user={
-      email:values.email,
-      password:values.password
-    }
+    const user = {
+      email: values.email,
+      password: values.password,
+    };
 
-    try{
-       const respond= await axios.post(`http://localhost:8000/${isStudent?'studentLogin':'teacherLogin'}`,user);
-      
+    try {
+      const respond = await axios.post(
+        `http://localhost:8000/${isStudent ? "studentLogin" : "teacherLogin"}`,
+        user
+      );
+
       //console.log(respond.data)
-       setResponse(respond.data)
-      console.log(response)
-      if(respond.data.valid){props.handleIsLogin()}
-    }catch(err){
-      console.log(err)
+      setResponse(respond.data);
+      console.log(response);
+      if (respond.data.valid) {
+        props.handleIsLogin();
+        props.handleUser(respond.data.id);
+      }
+    } catch (err) {
+      console.log(err);
     }
-   
-
-    
   };
 
   return (
@@ -103,8 +103,11 @@ function Login(props) {
                       Login
                     </button>
 
-                    <h4 onClick={handleLoginState} style={{cursor:'pointer'}}>
-                      click here to login as {isStudent ?  "Teacher":"Student"}
+                    <h4
+                      onClick={handleLoginState}
+                      style={{ cursor: "pointer" }}
+                    >
+                      click here to login as {isStudent ? "Teacher" : "Student"}
                     </h4>
                   </Row>
                 </Form>

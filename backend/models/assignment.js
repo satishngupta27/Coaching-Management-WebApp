@@ -64,10 +64,7 @@ const assignmentSchema={
         url:String,
         key:String
     },
-    // studentAttachments:{
-    //     url:String,
-    //     key:String
-    // }
+    
 }
 
 const Assignment = mongoose.model("Assignment",assignmentSchema);

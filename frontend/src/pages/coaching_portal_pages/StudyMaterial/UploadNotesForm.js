@@ -10,10 +10,11 @@ import axios from 'axios';
 function UploadNotesForm() {
   const [file, setFile] = useState(null);
   const notesTypedropdownOptions = [
-    { key: 'Select an option', value: '' },
-    { key: 'Option 1', value: 'option1' },
-    { key: 'Option 2', value: 'option2' },
-    { key: 'Option 3', value: 'option3' }
+    { key: 'Select content type', value: '' },
+    { key: 'Pdf', value: 'pdf' },
+    { key: 'Video', value: 'video' },
+    { key: 'MCQs', value: 'mcq' },
+    { key: 'Previous year papers', value: 'previousYearPaper' }
   ]
   const initialValues = {
     ChapterName: "",

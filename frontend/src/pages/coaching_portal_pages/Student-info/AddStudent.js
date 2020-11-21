@@ -12,9 +12,9 @@ function AddStudent() {
   
   const batchDropDownOptions = [
     { key: "Select a batch", value: "" },
-    { key: "Option 1", value: "option1" },
-    { key: "Option 2", value: "option2" },
-    { key: "Option 3", value: "option3" },
+    { key: "batch 1", value: "batch1" },
+    { key: "batch 2", value: "batch2" },
+    { key: "batch 3", value: "batch3" },
   ];
   const GenderradioOptions = [
     { key: "male", value: "male" },

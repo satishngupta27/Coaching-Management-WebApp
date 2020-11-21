@@ -86,7 +86,8 @@ router.route('/teacherLogin').post((req,res)=>{
       
       return res.status(200).json({
         message: 'login success',
-        valid:true
+        valid:true,
+        id:user._id
     });
      
   });
