@@ -15,15 +15,15 @@ function CreateAssignmentForm() {
 
   const batchDropDownOptions = [
     { key: "Select a batch", value: "" },
-    { key: "batch 1", value: "option1" },
-    { key: "batch 2", value: "option2" },
-    { key: "batch 3", value: "option3" },
+    { key: "batch 1", value: "batch1" },
+    { key: "batch 2", value: "batch2" },
+    { key: "batch 3", value: "batch3" },
   ];
   const subjectDropDownOptions = [
     { key: "Select a batch", value: "" },
-    { key: "Enlish", value: "option1" },
-    { key: "Maths", value: "option2" },
-    { key: "Physics", value: "option3" },
+    { key: "Enlish", value: "English" },
+    { key: "Maths", value: "Maths" },
+    { key: "Physics", value: "Physics" },
   ];
   //   const GenderradioOptions = [
   //     { key: "male", value: "male" },
