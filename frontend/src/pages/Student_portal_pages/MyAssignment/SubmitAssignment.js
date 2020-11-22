@@ -67,8 +67,8 @@ function SubmitAssignment(props) {
           <Row>
               <Col>
         <Container>
-          <h1>{assignment.title}</h1>
-          <h3>{assignment.instruction}</h3>
+          <h1>Title : {assignment.title}</h1>
+          <h3>Instructions :{assignment.instruction}</h3>
         </Container>
         </Col>
         <Col>
