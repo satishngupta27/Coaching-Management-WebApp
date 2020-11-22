@@ -40,6 +40,13 @@ function SubjectWise() {
               <MenuButton title={"Create new Subject "} />
             </span>
           </Link>
+          <Link to="./uploadNotesForm">
+            {/* {item.icon} */}
+            <span>
+              <MenuButton title={"Upload Content "} />
+            </span>
+          </Link>
+
         </Row>
         <Row>
           {subjects?subjects.map((item, index) => {

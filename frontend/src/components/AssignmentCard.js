@@ -8,17 +8,14 @@ function AssignmentCard(props) {
         <Card.Header as="h5">
           <Container>
             <Row className="justify-content-md-between">
-              <span>{props.title}</span>
+              <span>{props.subject}</span>
               <span>{props.dueDate}</span>
             </Row>
           </Container>
         </Card.Header>
         <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
+  <Card.Title>{props.title}</Card.Title>
+          
         </Card.Body>
       </Card>
     </>

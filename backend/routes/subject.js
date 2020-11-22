@@ -19,4 +19,14 @@ router.route("/subjects").get((req,res)=>{
 
 })
 
+router.route("/countSubjects").get(function(req, res) {
+    Subject.count({}, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    });
+  });
+
 module.exports= router;

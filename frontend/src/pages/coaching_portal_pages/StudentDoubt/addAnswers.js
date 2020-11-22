@@ -1,14 +1,31 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-
+import axios from "axios"
+import { useHistory } from "react-router-dom";
 import FormikControl from "../../../components/FormComponents/FormikControl";
-import { studentDoubtDemoData } from "./studentDoubtDemoData";
 
-function addAnswers(props) {
-  const id = props.match.params.id;
-  let obj = studentDoubtDemoData.find((obj) => obj.id == id);
+
+function AddAnswers(props) {
+  const history = useHistory();
+  const id= props.match.params.id;
+  const [doubt,setDoubt]=useState({
+    _id:"",
+    question:"",
+    answer:"",
+    postedBy:""
+
+  })
+
+  useEffect(()=>{
+     fetch("/doubts").then(res=>{
+      if(res.ok){
+        return res.json()
+      }
+    }).then(jsonRes=>setDoubt(jsonRes.find(obj=>obj._id===id )));
+  },[])
+
 
   const initialValues = {
     answer: "",
@@ -17,16 +34,23 @@ function addAnswers(props) {
     answer: Yup.string().required("Required"),
   });
 
+  
+
   const onSubmit = (values) => {
     console.log("Form data", values);
     console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    
+    
+   axios.put(`http://localhost:8000/doubts/${doubt._id}`,{answer:values.answer});
+   history.push("/studentDoubt")
     
   };
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Answer Doubt{obj.question}</h1>
+      <h1 style={{ textAlign: "center" }}>Answer Doubt</h1>
       <Container>
+  <h2>{doubt.question}</h2>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -49,4 +73,4 @@ function addAnswers(props) {
     </div>
   );
 }
-export default addAnswers;
+export default AddAnswers;
