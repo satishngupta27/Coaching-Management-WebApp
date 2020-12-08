@@ -1,59 +1,53 @@
 const express = require("express");
 const router = express.Router();
-const Student = require("../models/student");
+const Teacher = require("../models/teacher");
 
-router.route("/addStudent").post(async (req, res) => {
+router.route("/addTeacher").post(async (req, res) => {
   const {
     firstName,
     lastName,
     email,
-    mobileNumber,
-    batch,
+    mobileNumber,   
     gender,
-    birthDate,
-    guardianName,
-    gurardianMobileNumber,
+    birthDate,    
     address,
     state,
-    city,
+    city
   } = req.body;
 
-  const newStudent = new Student({
+  const newteacher = new Teacher({
     firstName,
     lastName,
     email,
-    mobileNumber,
-    batch,
+    mobileNumber,   
     gender,
-    birthDate,
-    guardianName,
-    gurardianMobileNumber,
+    birthDate,    
     address,
     state,
     city,
   });
-  await newStudent.save();
+  await newteacher.save();
 });
 
-router.route("/students").get((req, res) => {
-  Student.find().then((students) => res.json(students));
+router.route("/teachers").get((req, res) => {
+  Teacher.find().then((teachers) => res.json(teachers));
 });
 
-router.route("/students/:id").get((req,res) =>{
+router.route("/teachers/:id").get((req,res) =>{
   const id = req.params.id;
-  Student.findById(id).then((student) => res.json(student));
+  Teacher.findById(id).then((teacher) => res.json(teacher));
 })
 
-router.route("/students/:id").put( async (req,res) => {
+router.route("/teachers/:id").put( async (req,res) => {
   const id  = req.params.id;
-  const update = await Student.findByIdAndUpdate(id, req.body, {runValidators:true});
+  const update = await Teacher.findByIdAndUpdate(id, req.body, {runValidators:true});
   console.log(update);
 })
 
-router.route("/students/:id").delete( async (req,res) =>{
+router.route("/teachers/:id").delete( async (req,res) =>{
   const id = req.params.id;
   try{
-    const deletestudent = await Student.findByIdAndDelete(id);
+    const deletestudent = await Teacher.findByIdAndDelete(id);
   }catch(err){
     console.log(err)
   }
@@ -63,8 +57,8 @@ router.route("/students/:id").delete( async (req,res) =>{
   
 })
 
-router.route("/countStudents").get(function(req, res) {
-  Student.count({}, function(err, result) {
+router.route("/countTeachers").get(function(req, res) {
+  Teacher.count({}, function(err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -73,10 +67,10 @@ router.route("/countStudents").get(function(req, res) {
   });
 });
 
-router.route('/studentLogin').post(async(req,res)=>{
+router.route('/teacherLogin').post((req,res)=>{
    const { email, password } = req.body;
    console.table({ email, password });
-   await Student.findOne({ email }).exec((err, user) => {
+    Teacher.findOne({ email }).exec((err, user) => {
       if (err || !user) {
           return res.status(400).json({
               message: 'User with that email does not exist. Please register.',

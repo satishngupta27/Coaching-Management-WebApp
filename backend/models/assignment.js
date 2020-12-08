@@ -52,15 +52,19 @@ const assignmentSchema={
     subject:String,
     dueDate:String,
     points:String,
-    answer: String,
+    
+    studentAttachments:[
+        {
+        answer:String,
+        name: String,
+        url: String,
+        key:String
+    }],
     teacherAttachments:{
         url:String,
         key:String
     },
-    studentAttachments:{
-        url:String,
-        key:String
-    }
+    
 }
 
 const Assignment = mongoose.model("Assignment",assignmentSchema);

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import MenuButton from "../../../components/MenuButton";
 import {
   Container,
@@ -9,31 +9,33 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MdDelete, MdCreate, MdPerson } from "react-icons/md";
-
+import axios from 'axios'
 
 function Student_Info() {
-  const [students,setStudents]=useState([{
-    _id:"",
-    firstName: "",
-    lastName: "",
-    email: "",
-    mobileNumber: "",    
-    guardianName: "",
-   
-  }])
+  const [students, setStudents] = useState([
+    {
+      _id: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobileNumber: "",
+      guardianName: "",
+    },
+  ]);
 
-  useEffect(()=>{
-     fetch("/students").then(res=>{
-      if(res.ok){
-        return res.json()
-      }
-    }).then(jsonRes=>setStudents(jsonRes));
-  },[])
+  useEffect(() => {
+    fetch("/students")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((jsonRes) => setStudents(jsonRes));
+  }, []);
 
   return (
     <div className="student_info">
-      <h1 style={{ textAlign: "center" }}>Student_Info</h1>
-      <Container>
+      <Container className={"mt-3"}>
         <Row
           style={{
             justifyContent: "flex-end",
@@ -48,14 +50,14 @@ function Student_Info() {
             </span>
           </Link>
         </Row>
-        <h1>List of Student</h1>
+        <h1>List of Students</h1>
 
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
               <th>#</th>
               <th>Student Name</th>
-              
+
               <th>Username</th>
               <th>Mobile No.</th>
               <th>Guardian Name</th>
@@ -66,21 +68,44 @@ function Student_Info() {
             {students.map((item, index) => {
               return (
                 <tr>
-                  <td>{item._id}</td>
-                  <td>{item.firstName+" "+item.lastName}</td>
-                  
+                  <td>{index + 1}</td>
+                  <td>{item.firstName + " " + item.lastName}</td>
+
                   <td>{item.email}</td>
                   <td>{item.mobileNumber}</td>
                   <td>{item.guardianName}</td>
                   <td style={{ textAlign: "center" }}>
-                    <MdDelete />
-                    <MdCreate />
+                    <OverlayTrigger
+                      overlay={<Tooltip>Click to edit student details</Tooltip>}
+                    >
+                      <Link to={`./student_Info/editStudent/${item._id}`}>
+                        <span>
+                          <MdCreate />
+                        </span>
+                      </Link>
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip>Click to delete student from database</Tooltip>
+                      }
+                    >
+                      <span>
+                        <MdDelete onClick={()=>{
+                          const isDelete= window.confirm(`are you sure to remove ${item.firstName+' '+item.lastName}`)
+                          if(isDelete){
+                            try{ axios.delete(`http://localhost:8000/students/${item._id}`);
+                          }catch(err){
+                            console.log(err)
+                          }
+                           
+                          }
+                          }}/>
+                      </span>
+                    </OverlayTrigger>
                     <OverlayTrigger
                       overlay={<Tooltip>Click to view Profile</Tooltip>}
                     >
-                      <Link
-                        to={`./Student_Info/studentprofile/${item._id}`}
-                      >
+                      <Link to={`./Student_Info/studentprofile/${item._id}`}>
                         <span>
                           <MdPerson />
                         </span>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   Container,
   Row,
@@ -8,7 +8,11 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 
-function MyProfile() {
+function MyProfile(props) {
+  const [userId,setUserId]=useState(props.userId)
+
+  console.log("profile page",userId)
+  
   return (
     <Container>
       <Row>
@@ -20,7 +24,7 @@ function MyProfile() {
               src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg"
             />
             <Card.Body>
-              <Card.Title>Name:harry Potter</Card.Title>
+  <Card.Title>Name:{userId}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem>email: harry@gmail.com</ListGroupItem>

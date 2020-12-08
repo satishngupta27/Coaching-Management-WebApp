@@ -26,7 +26,7 @@ mongoose
 
 // app middlewares
 app.use(morgan("dev"));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 //app.use(bodyParser.json({limit:'5mb',type:'application/json'}));
 app.use(cors());
 app.use(express.json())
@@ -42,6 +42,7 @@ app.use(fileUpload({ useTempFiles : true,
 
 app.use("/",require('./routes/subject'));
 app.use("/",require('./routes/student'));
+app.use("/",require('./routes/teacher'));
 app.use("/",require('./routes/doubt'));
 app.use("/",require('./routes/batch'));
 app.use("/",require('./routes/studyMaterial'));

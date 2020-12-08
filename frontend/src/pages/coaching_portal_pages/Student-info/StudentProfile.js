@@ -33,23 +33,21 @@ function StudentProfile(props) {
  console.log(student.firstName)
  
   return (
-    <Container >
+    <Container className={'mt-3'}>
       <Row>
         <Col>
           <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="dfsf.svg" />
+            <Card.Img variant="top" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg" />
             <Card.Body>
               <Card.Title>{}</Card.Title>
             
             </Card.Body>
             <ListGroup className="list-group-flush">
   <ListGroupItem>email: {student.email}</ListGroupItem>
-              <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-              <ListGroupItem>Vestibulum at eros</ListGroupItem>
+              
             </ListGroup>
             <Card.Body>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
+              
             </Card.Body>
           </Card>
         </Col>
@@ -67,10 +65,7 @@ function StudentProfile(props) {
         <h3>Parent details</h3>
   <h6>Guardian Name: {student.guardianName}</h6>
   <h6>mobile no: {student.guadianMobileNumber}</h6>
-        <h6>email: Harry potter</h6>
-        <h6>dob: Harry potter</h6>
-        <h6>Address: Harry potter</h6>
-        <h6>Roll no: Harry potter</h6>
+       
         </Card>
         </Col>
       </Row>
