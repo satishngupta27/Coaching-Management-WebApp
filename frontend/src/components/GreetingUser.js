@@ -11,13 +11,13 @@ if (currentHour > 1 && currentHour < 12) {
 } else {
   greeting = "Good Night";
 }
-function GreetingUser() {
+function GreetingUser(props) {
   return (
     <>
       <Col style={{ textAlign: "left" }}>
         <h2>{greeting}</h2>
 
-        <h4>Harry</h4>
+  <h4>{props.name}</h4>
       </Col>
     </>
   );
