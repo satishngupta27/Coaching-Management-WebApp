@@ -7,6 +7,9 @@
     align-items: center;
     z-index: 5;
   }
+  .navbar.student{
+    background-color: gray;
+  }
   
   .menu-bars {
     margin-left: 2rem;
@@ -27,11 +30,15 @@
     transition: 850ms;
     z-index: 5;
   }
+  .nav-menu.navbar.student{
+    background-color:grey;
+  }
   
   .nav-menu.active {
     left: 0;
     transition: 350ms;
   }
+  
   
   .nav-text {
     display: flex;
@@ -56,7 +63,10 @@
   }
   
   .nav-text a:hover {
-    background-color: #1a83ff;
+    background-color: #FD5750;
+    /* background-color: #1a83ff; */
+    color:white;
+    text-decoration: none;
   }
   
   .nav-menu-items {
