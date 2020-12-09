@@ -5,6 +5,7 @@ import Select from './Select'
 import RadioButtons from './RadioButtons'
 import CheckboxGroup from './CheckBoxGroup'
 import DatePicker from './DatePicker'
+import ReactQuillE from './ReactQuillE'
 
 
 function FormikControl (props) {
@@ -22,6 +23,8 @@ function FormikControl (props) {
       return <CheckboxGroup {...rest} />
     case 'date':
       return <DatePicker {...rest} />
+    case 'reactQuill':
+      return <ReactQuillE {...rest}/>
     default:
       return null
   }
