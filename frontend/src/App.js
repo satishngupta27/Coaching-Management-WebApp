@@ -37,7 +37,7 @@ function App() {
   } else {
     return <PageRoutes isStudent={isStudent} userId={userId} />;
   }
->>>>>>> 9100b1604e5ddb91a6007cc0ed8f1d076c4ad41b
+
 }
 
 export default App;
