@@ -11,7 +11,10 @@ import axios from "axios";
 
 function CreateAssignmentForm() {
   const [file, setFile] = useState(null);
+  const [buttonText,SetButtonText]=useState("Create")
   const history = useHistory();
+  
+
 
   const batchDropDownOptions = [
     { key: "Select a batch", value: "" },
@@ -47,6 +50,7 @@ function CreateAssignmentForm() {
     dueDate: Yup.date().required("Required").nullable(),
   });
   const onSubmit = (values) => {
+    SetButtonText("Creating...")
     let formData = new FormData();
 
     formData.append("file", file[0]);
@@ -68,12 +72,18 @@ function CreateAssignmentForm() {
       })
       .then((res) => {
         console.log(res.data);
-      })
+        
+       
+        
+        
+      }).then(()=>{SetButtonText("Created")}).then(()=>history.push("/assignment"))
       .catch((err) => {
         console.log(err);
+        SetButtonText("Create")
       });
+      // history.push("/assignment");
 
-    //history.push("/assignment");
+    
   };
 
   return (
@@ -146,7 +156,7 @@ function CreateAssignmentForm() {
               </Row> */}
               <Row style={{ justifyContent: "right" }}>
                 <button type="submit" className="btn btn-primary">
-                  Create
+                  {buttonText}
                 </button>
               </Row>
             </Form>
