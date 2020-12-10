@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,6 +7,24 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 function AskDoubtForm() {
+  const [id,setId]=useState(localStorage.getItem("userId"))
+  const [user,setUser]=useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",
+    
+  })
+  useEffect(()=>{  
+
+    fetch(`/students/${id}`).then(res=>{
+      if(res.ok){
+        return res.json()
+      }
+    }).then(jsonRes=>setUser(jsonRes));
+
+  },[])
   const history = useHistory();
     const initialValues = {
         question: "",
@@ -21,7 +39,7 @@ function AskDoubtForm() {
         const newDoubt={
           question:values.question,
           answer:"",
-          postedBy:"satish"
+          postedBy:user.firstName + " " +user.lastName
     
         }
         axios.post('http://localhost:8000/askDoubt',newDoubt);
