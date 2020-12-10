@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
   Container,
   Row,
@@ -8,10 +8,32 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 
-function MyProfile(props) {
-  const [userId,setUserId]=useState(props.userId)
+function MyProfile() {
+  const [id,setId]=useState(localStorage.getItem("userId"))
+  const [user,setUser]=useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",    
+    batch: "",
+    gender: "",
+    guardianName: "",
+    guadianMobileNumber: "",
+    address: "",
+    state: "",
+    city: "",
+    birthDate: null,
+    
+  })
+  useEffect(()=>{  
 
-  console.log("profile page",userId)
+    fetch(`/students/${id}`).then(res=>{
+      if(res.ok){
+        return res.json()
+      }
+    }).then(jsonRes=>setUser(jsonRes));
+
+  },[])
   
   return (
     <Container>
@@ -24,12 +46,12 @@ function MyProfile(props) {
               src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg"
             />
             <Card.Body>
-  <Card.Title>Name:{userId}</Card.Title>
+  <Card.Title>Name:{user.firstName+ " "+ user.lastName}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem>email: harry@gmail.com</ListGroupItem>
-              <ListGroupItem>Mobile Number:9149037618</ListGroupItem>
-              <ListGroupItem>Batch:Maths</ListGroupItem>
+  <ListGroupItem>email: {user.email}</ListGroupItem>
+  <ListGroupItem>Mobile Number:{user.mobileNumber}</ListGroupItem>
+  <ListGroupItem>Batch:{user.batch}</ListGroupItem>
             </ListGroup>
           </Card>
           </Container>
@@ -37,21 +59,18 @@ function MyProfile(props) {
         <Col>
           <Card style={{ padding: "30px", margin: "20px" }}>
             <h3>Personal details</h3>
-            <h6>Name: harry</h6>
-            <h6>mobile no:harry</h6>
-            <h6>email: Harry potter</h6>
-            <h6>dob: Harry potter</h6>
-            <h6>gender: Harry potter</h6>
-            <h6>Roll no: Harry potter</h6>
+  <h6>Name: {user.firstName+ " "+user.lastName}</h6>
+  <h6>mobile no:{user.mobileNumber}</h6>
+  <h6>email: {user.email}</h6>
+  <h6>dob: {user.birthDate}</h6>
+  <h6>gender: {user.gender}</h6>
+           
           </Card>
           <Card style={{ padding: "30px", margin: "20px" }}>
             <h3>Parent details</h3>
-            <h6>Name: Harry potter</h6>
-            <h6>mobile no: Harry potter</h6>
-            <h6>email: Harry potter</h6>
-            <h6>dob: Harry potter</h6>
-            <h6>Address: Harry potter</h6>
-            <h6>Roll no: Harry potter</h6>
+  <h6>Name: {user.guardianName}</h6>
+  <h6>mobile no: {user.guadianMobileNumber}r</h6>
+            
           </Card>
         </Col>
       </Row>
