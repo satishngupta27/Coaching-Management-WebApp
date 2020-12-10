@@ -64,7 +64,7 @@ router.route("/students/:id").delete( async (req,res) =>{
 })
 
 router.route("/countStudents").get(function(req, res) {
-  Student.count({}, function(err, result) {
+  Student.countDocuments({}, function(err, result) {
     if (err) {
       console.log(err);
     } else {
