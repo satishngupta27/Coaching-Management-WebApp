@@ -8,8 +8,9 @@ import axios from "axios";
 
 function Login(props) {
   const [response, setResponse] = useState({
-    Valid: "",
+    valid: "",
     message: "",
+    id: "",
   });
 
   const [isStudent, setIsStudent] = useState(props.isStudent);
@@ -35,22 +36,63 @@ function Login(props) {
       password: values.password,
     };
 
-    try {
-      const respond = await axios.post(
+    axios
+      .post(
         `http://localhost:8000/${isStudent ? "studentLogin" : "teacherLogin"}`,
         user
-      );
+      )
+      .then((respond) => {
+        setResponse({
+          ...response,
+          valid: respond.data.valid,
+          message: respond.data.message,
+        });
+        if (respond.data.valid) {
+          setResponse({
+            ...response,
+            valid: respond.data.valid,
+            message: respond.data.message,
+            id: respond.data.id,
+          });
+          return respond;
+          // props.handleUser(response.id);
+          // props.handleIsLogin();
+        }
+      })
+      .then((respond) => {
+        if (respond.data.valid) {
+          localStorage.setItem("userId",respond.data.id)
+          props.handleUser(respond.data.id);
+          return respond;
+        }
+      })
+      .then((respond) => {
+        if (respond.data.valid) {
+          props.handleIsLogin();
+        }
+      })
+      .catch((err) => console.log(err));
 
-      //console.log(respond.data)
-      setResponse(respond.data);
-      console.log(response);
-      if (respond.data.valid) {
-        props.handleIsLogin();
-        props.handleUser(respond.data.id);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   const respond = await axios.post(
+    //     `http://localhost:8000/${isStudent ? "studentLogin" : "teacherLogin"}`,
+    //     user
+    //   );
+    //   //console.log(respond.data.)
+    //   setResponse({...response,valid:respond.data.valid,message:respond.data.message})
+    //   if (respond.data.valid) {
+
+    //     setResponse({...response,valid:respond.data.valid,message:respond.data.message,id:respond.data.id})
+
+    //     //props.handleUser(respond.data.id);
+    //     // props.handleUser(response.id);
+    //     // props.handleIsLogin();
+    //   }
+
+    // } catch (err) {
+    //   console.log(err);
+    //   //setResponse({...response,valid:respond.data.valid,message:respond.data.message})
+    // }
   };
 
   return (
@@ -78,6 +120,14 @@ function Login(props) {
             For {isStudent ? "Student" : "Teacher"}
           </h4>
           <Container style={{ marginTop: "15vh" }}>
+            {response.message != "" ? (
+              <div className="alert alert-success">{response.message}</div>
+            ) : (
+              ""
+            )}
+
+            {/* {console.log(response)} */}
+
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -98,18 +148,21 @@ function Login(props) {
                     name="password"
                   />
 
-                  <Row>
+                  <Col>
                     <button type="submit" className="btn btn-primary">
                       Login
                     </button>
-
-                    <h4
+                  </Col>
+                  <Col className="mt-5 " style={{ textAlign: "center" }}>
+                    <div
+                      className="btn btn-dark"
                       onClick={handleLoginState}
-                      style={{ cursor: "pointer" }}
+                      style={{ textAlign: "right" }}
                     >
-                      click here to login as {isStudent ? "Teacher" : "Student"}
-                    </h4>
-                  </Row>
+                      Click here to change login role as{" "}
+                      {isStudent ? "Teacher" : "Student"}
+                    </div>
+                  </Col>
                 </Form>
               )}
             </Formik>

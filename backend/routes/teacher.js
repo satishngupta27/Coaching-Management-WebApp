@@ -58,7 +58,7 @@ router.route("/teachers/:id").delete( async (req,res) =>{
 })
 
 router.route("/countTeachers").get(function(req, res) {
-  Teacher.count({}, function(err, result) {
+  Teacher.countDocuments({}, function(err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -72,19 +72,19 @@ router.route('/teacherLogin').post((req,res)=>{
    console.table({ email, password });
     Teacher.findOne({ email }).exec((err, user) => {
       if (err || !user) {
-          return res.status(400).json({
+          return res.json({
               message: 'User with that email does not exist. Please register.',
               valid:false
           });
       }
       if(password!=user.mobileNumber){
-        return res.status(400).json({
+        return res.json({
           message:"password is not correct",
           valid:false
         })
       }
       
-      return res.status(200).json({
+      return res.json({
         message: 'login success',
         valid:true,
         id:user._id

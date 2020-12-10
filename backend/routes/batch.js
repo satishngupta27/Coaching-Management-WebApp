@@ -22,7 +22,7 @@ router.route("/batches/:id").delete(async (req, res) => {
 });
 
 router.route("/countBatches").get(function (req, res) {
-  Batch.count({}, function (err, result) {
+  Batch.countDocuments({}, function (err, result) {
     if (err) {
       console.log(err);
     } else {

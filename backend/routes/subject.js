@@ -20,7 +20,7 @@ router.route("/subjects").get((req,res)=>{
 })
 
 router.route("/countSubjects").get(function(req, res) {
-    Subject.count({}, function(err, result) {
+    Subject.countDocuments({}, function(err, result) {
       if (err) {
         console.log(err);
       } else {

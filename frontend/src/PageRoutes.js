@@ -41,16 +41,13 @@ import MyDashboard from "./pages/Student_portal_pages/MyDashboard/MyDashboard";
 import AskDoubt from "./pages/Student_portal_pages/MyDoubt/AskDoubtForm";
 
 function PageRoutes(props) {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(props.id);
+  
   //const userId = props.userId;
   useEffect(() => {
-    //   fetch("/subjects").then(res=>{
-    //    if(res.ok){
-    //      return res.json()
-    //    }
-    //  }).then(jsonRes=>setSubjects(jsonRes));
+    
     setUserId(props.userId);
-  }, []);
+  }, [userId]);
 
   console.log("page routers uid", userId);
   if (!props.isStudent) {
@@ -59,7 +56,10 @@ function PageRoutes(props) {
         <Navbar isStudent={props.isStudent} />
         <Switch>
           {/* routes for teachers */}
-          <Route path="/" exact component={Dashboard} />
+          <Route path="/" exact>
+            <Dashboard id={userId} />
+          </Route> 
+          {/* <Route path="/" exact component={Dashboard} /> */}
           <Route
             path="/studymaterialType"
             exact
@@ -116,7 +116,10 @@ function PageRoutes(props) {
         <Navbar isStudent={props.isStudent} />
         <Switch>
           {/* routes for student */}
-          <Route path="/myDashboard" exact component={MyDashboard} />
+          <Route path="/myDashboard" exact>
+            <MyDashboard id={userId} />
+          </Route> 
+          {/* <Route path="/myDashboard" exact component={MyDashboard} /> */}
           <Route path="/myStudyMaterial" exact component={MyStudyMaterial} />
           <Route
             path="/myStudyMaterialType"
@@ -134,7 +137,9 @@ function PageRoutes(props) {
             userId={userId}
           />
           <Route path="/notes" exact component={Notes} />
-          {/* <Redirect to='/myDashboard'/> */}
+          <Redirect to='/myDashboard'/>
+          
+          
         </Switch>
       </Router>
     );
