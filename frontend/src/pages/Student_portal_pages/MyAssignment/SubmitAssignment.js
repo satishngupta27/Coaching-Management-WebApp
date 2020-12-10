@@ -10,6 +10,7 @@ import { AssignmentDemoData } from "../../coaching_portal_pages/Assignment/Assig
 
 function SubmitAssignment(props) {
   const [file, setFile] = useState(null);
+  const [buttonText,SetButtonText]=useState("Submit")
   const history = useHistory();
 
   const id= props.match.params.id;
@@ -41,6 +42,7 @@ function SubmitAssignment(props) {
   });
 
   const onSubmit = (values) => {
+    SetButtonText("Submitting ...")
     let formData = new FormData();
    
     formData.append("file",file[0]);
@@ -55,7 +57,7 @@ function SubmitAssignment(props) {
       }}
       ).then(res=>{
         console.log(res.data)
-      }).catch(err=>{
+      }).then(()=>SetButtonText("Submitted")).then(()=>history.push("/myAssignment")).catch(err=>{
         console.log(err)
       })
   };
@@ -89,7 +91,7 @@ function SubmitAssignment(props) {
                 (event)=>setFile(event.target.files)
               }/>
                 <button type="submit" className="btn btn-primary">
-                  Submit Answer
+                  {buttonText}
                 </button>
               </Form>
             )}
