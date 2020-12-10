@@ -28,11 +28,7 @@ function MyAssignment() {
       <div>
       <h1 style={{ textAlign: "center" }}>Assignment</h1>
       <Container>
-        <Row style={{ justifyContent: "flex-end", textAlign: "center" }}>
-          <Link to="./createAssignmentForm">
-            <MenuButton title={"Create Assignment"} />
-          </Link>
-        </Row>
+        
         <Row>
           <h1>All assignment</h1>
         </Row>
